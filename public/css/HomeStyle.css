@@ -1,0 +1,36 @@
+.main-icon{
+    font-size: 9em;
+    text-align: center;
+}
+.card-header{
+    text-align: center;
+}
+.card-body{
+    text-align: center;
+}
+.patient-menu{
+    text-decoration: none;
+    color: black;
+}
+
+.form-group{
+    width: 100% !important;
+}
+textarea{
+    width: 100% !important;
+}
+
+.radio_appointment{
+
+}
+.btn_appointment{
+    width: 100px;
+}
+
+#no-appointment-cancel{
+    font-size: 25px !important;
+    color: #5A5A5A;
+
+}
+
+
