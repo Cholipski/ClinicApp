@@ -1,3 +1,5 @@
-@include('admin.layouts.header')
-@include('admin.layouts.sidebar')
-@include('admin.layouts.footer')
+@extends('admin.layouts.master')
+@section('content')
+    Liczba wizyt na dzis: {{ $amount }}
+@endsection
+

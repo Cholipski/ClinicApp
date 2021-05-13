@@ -44,6 +44,22 @@
                             <a href="" class="menu-item">Generuj listę pacjentów</a>
                         </div>
                     </div>
+
+                    @elseif(Auth::user()->role->name=="Doktor")
+
+                        <div class="nav-item ">
+                            <a href="{{route('doctor.home')}}"><i class="ik ik-layers"></i><span>Home</span></a>
+                        </div>
+
+                        <div class="nav-item ">
+                            <a href="{{route('doctor.home.index')}}"><i class="ik ik-layers"></i><span>Lista pacjentow</span></a>
+                        </div>
+
+                        <div class="nav-item ">
+                            <a href="{{route('doctor.home.show')}}"><i class="ik ik-layers"></i><span>Ukonczone wizyty</span></a>
+                        </div>
+
+
                     @endif
 
                 </nav>
