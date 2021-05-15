@@ -26,6 +26,10 @@ Route::group(['middleware'=>['auth','Administrator']],function() {
     Route::resource('admin/appointment', 'Admin\AppointmentController');
     Route::resource('admin/weekly_appointment', 'Admin\WeeklyAppointmentController');
     Route::resource('admin/patient', 'Admin\PatientController');
+    Route::resource('admin/booking', 'Admin\BookingController');
+
+    Route::get('admin/booking/rejected_booked/{id}', 'Admin\BookingController@rejected_booked')->name('booking.rejected_booked');
+    Route::get('admin/booking/accepted_booked/{id}', 'Admin\BookingController@accepted_booked')->name('booking.accepted_booked');
 
     Route::post('admin/appointment/check','Admin\AppointmentController@check')->name('appointment.check');
 
