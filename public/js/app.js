@@ -34508,19 +34508,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/css/admin2.scss":
-/*!***********************************!*\
-  !*** ./resources/css/admin2.scss ***!
-  \***********************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-// extracted by mini-css-extract-plugin
-
-
-/***/ }),
-
 /***/ "./resources/css/HomeStyle.css":
 /*!*************************************!*\
   !*** ./resources/css/HomeStyle.css ***!
@@ -49724,8 +49711,7 @@ Vue.compile = compileToFunctions;
 /******/ 			"/js/app": 0,
 /******/ 			"css/app": 0,
 /******/ 			"css/admin": 0,
-/******/ 			"css/HomeStyle": 0,
-/******/ 			"css/admin2": 0
+/******/ 			"css/HomeStyle": 0
 /******/ 		};
 /******/ 		
 /******/ 		// no chunk on demand loading
@@ -49773,11 +49759,10 @@ Vue.compile = compileToFunctions;
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	__webpack_require__.O(undefined, ["css/app","css/admin","css/HomeStyle","css/admin2"], () => (__webpack_require__("./resources/js/app.js")))
-/******/ 	__webpack_require__.O(undefined, ["css/app","css/admin","css/HomeStyle","css/admin2"], () => (__webpack_require__("./resources/sass/app.scss")))
-/******/ 	__webpack_require__.O(undefined, ["css/app","css/admin","css/HomeStyle","css/admin2"], () => (__webpack_require__("./resources/css/admin2.scss")))
-/******/ 	__webpack_require__.O(undefined, ["css/app","css/admin","css/HomeStyle","css/admin2"], () => (__webpack_require__("./resources/css/HomeStyle.css")))
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/app","css/admin","css/HomeStyle","css/admin2"], () => (__webpack_require__("./resources/css/admin.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/admin","css/HomeStyle"], () => (__webpack_require__("./resources/js/app.js")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/admin","css/HomeStyle"], () => (__webpack_require__("./resources/sass/app.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/admin","css/HomeStyle"], () => (__webpack_require__("./resources/css/HomeStyle.css")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/app","css/admin","css/HomeStyle"], () => (__webpack_require__("./resources/css/admin.css")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

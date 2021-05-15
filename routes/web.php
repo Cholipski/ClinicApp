@@ -40,7 +40,7 @@ Route::group(['middleware'=>['auth','Doctor']],function() {
 
 Route::group(['middleware'=>['auth','Patient']],function() {
     Route::resource('patient/new_appointment', 'Patient\AppointmentController');
-    Route::resource('patient/cancel_appointment', 'Patient\CancelAppointment');
+    Route::resource('patient/cancel_appointment', 'Patient\CancelAppointmentController');
     Route::resource('patient/profile', 'Patient\ProfileController');
 
 
