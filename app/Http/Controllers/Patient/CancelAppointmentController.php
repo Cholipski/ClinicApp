@@ -8,7 +8,7 @@ use App\Models\Time;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-class CancelAppointment extends Controller
+class CancelAppointmentController extends Controller
 {
     /**
      * Display a listing of the resource.

@@ -40,9 +40,13 @@ Route::group(['middleware'=>['auth','Doctor']],function() {
 
 Route::group(['middleware'=>['auth','Patient']],function() {
     Route::resource('patient/new_appointment', 'Patient\AppointmentController');
-    Route::resource('patient/cancel_appointment', 'Patient\CancelAppointment');
+    Route::resource('patient/cancel_appointment', 'Patient\CancelAppointmentController');
+    Route::resource('patient/profile', 'Patient\ProfileController');
+
 
     Route::post('patient/new_appointment/doctors','Patient\AppointmentController@doctorlist')->name('book.doctorlist');
+    Route::post('profile/','Patient\ProfileController@changePassword')->name('profile.changePassword');
+
     Route::get('patient/new_appointment/{doctor}/{time_id}','Patient\AppointmentController@showTimes')->name('book.showTimes');
 
 

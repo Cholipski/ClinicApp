@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-4">
-            <a class="patient-menu" href="">
+            <a class="patient-menu" href="{{route('profile.index')}}">
                 <div class="card">
                     <div class="card-header">
                         <i class="far fa-id-card main-icon"></i>
