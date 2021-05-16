@@ -25,6 +25,8 @@
     <link rel="stylesheet" href="{{asset('template/plugins/owl.carousel/dist/assets/owl.carousel.min.css')}}">
     <link rel="stylesheet" href="{{asset('template/plugins/owl.carousel/dist/assets/owl.theme.default.min.css')}}">
     <link rel="stylesheet" href="{{asset('template/dist/css/theme.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/admin.css')}}">
+    <link rel="stylesheet" href="{{asset('css/admin2.css')}}">
     <script src="{{asset('template/src/js/vendor/modernizr-2.8.3.min.js')}}"></script>
 
 </head>

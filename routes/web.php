@@ -27,6 +27,10 @@ Route::group(['middleware'=>['auth','Administrator']],function() {
     Route::resource('admin/appointment', 'Admin\AppointmentController');
     Route::resource('admin/weekly_appointment', 'Admin\WeeklyAppointmentController');
     Route::resource('admin/patient', 'Admin\PatientController');
+    Route::resource('admin/booking', 'Admin\BookingController');
+
+    Route::get('admin/booking/rejected_booked/{id}', 'Admin\BookingController@rejected_booked')->name('booking.rejected_booked');
+    Route::get('admin/booking/accepted_booked/{id}', 'Admin\BookingController@accepted_booked')->name('booking.accepted_booked');
 
     Route::post('admin/appointment/check','Admin\AppointmentController@check')->name('appointment.check');
 
@@ -41,9 +45,13 @@ Route::group(['middleware'=>['auth','Doctor']],function() {
 
 Route::group(['middleware'=>['auth','Patient']],function() {
     Route::resource('patient/new_appointment', 'Patient\AppointmentController');
-    Route::resource('patient/cancel_appointment', 'Patient\CancelAppointment');
+    Route::resource('patient/cancel_appointment', 'Patient\CancelAppointmentController');
+    Route::resource('patient/profile', 'Patient\ProfileController');
+
 
     Route::post('patient/new_appointment/doctors','Patient\AppointmentController@doctorlist')->name('book.doctorlist');
+    Route::post('profile/','Patient\ProfileController@changePassword')->name('profile.changePassword');
+
     Route::get('patient/new_appointment/{doctor}/{time_id}','Patient\AppointmentController@showTimes')->name('book.showTimes');
 
 
