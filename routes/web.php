@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,9 +37,9 @@ Route::group(['middleware'=>['auth','Administrator']],function() {
 });
 
 Route::group(['middleware'=>['auth','Doctor']],function() {
-    Route::get('/doctor/home', function () {
-        return view('doctor.home');
-    });
+    Route::get('/doctor/home','Doctor\DoctorController@amount')->name('doctor.home');
+    Route::get('doctor/home/list','Doctor\DoctorController@index')->name('doctor.home.index');
+    Route::get('doctor/home/show','Doctor\DoctorController@show')->name('doctor.home.show');
 
 });
 
