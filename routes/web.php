@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 Route::resource('/', 'HomeController')->middleware('auth');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -54,6 +54,7 @@ Route::group(['middleware'=>['auth','Patient']],function() {
 
     Route::get('patient/new_appointment/{doctor}/{time_id}','Patient\AppointmentController@showTimes')->name('book.showTimes');
 
+    Route::resource('patient/prescription', 'Patient\PrescriptionController');
 
 
 });
