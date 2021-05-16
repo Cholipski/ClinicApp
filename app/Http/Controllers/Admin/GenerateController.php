@@ -4,20 +4,31 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use app\Models\User;
+use App\Models\User;
+use App\Models\Booking;
+use App\Http\Controllers\Admin\Carbon;
 use PDF;
 
 class GenerateController extends Controller
 {
     public function index()
     {
-        $patients = User::where('role_id',3)->get();
-        return view('admin.patient.generate',compact('patients'));
+        $date = date('Y-m-d');
+        $bookings = Booking::all()->where('date', $date);
+
+        return view('admin.patient.generate',compact('bookings'));
     }
-    public function PDFgenerator()
-    {
-        $patients = User::where('role_id',3)->get();
-        $pdf = PDF::loadview('admin.patient.patient_list', compact('patients'));
+
+    public function generate(Request $request){
+        $doctor = $request->doctor_id;
+        $date = date('Y-m-d');
+        $bookings = Booking::all()->where('date', $date)->where('doctor_id', $doctor)->sortBy('time');
+
+        if($bookings->count() == 0){
+            return redirect()->to('/admin/generate')->with('errmessage','Nie znaleziono wizyt dla wybanego lekarza');
+        }
+        $pdf = PDF::loadview('admin.patient.patient_list', compact('bookings'));
         return $pdf->download('lista_pacjentów.pdf');
+
     }
 }

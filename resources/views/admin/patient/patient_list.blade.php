@@ -22,23 +22,24 @@
                     <thead>
                     <tr>
                         <th>Id</th>
-                        <th>Imię</th>
-                        <th>Nazwisko</th>
-                        <th>Email</th>
-                        <th>Adres</th>
+                        <th>Pacjent</th>
+                        <th>Godzina</th>
+                        <th>Objawy</th>
                         <th>Telefon</th>
                     </tr>
                     </thead>
                     <tbody>
                     {{$i = 1}}
-                    @foreach($patients as $patient)
+                    @foreach($bookings as $booking)
                     <tr>
                         <td>{{$i++}}</td>
-                        <td>{{$patient->first_name}}</td>
-                        <td>{{$patient->last_name}}</td>
-                        <td>{{$patient->email}}</td>
-                        <td>{{$patient->address}}</td>
-                        <td>{{$patient->phone_number}}</td>
+                        <td>
+                        {{App\Models\User::where('id', $booking->user_id)->value('first_name')}}
+                        {{App\Models\User::where('id', $booking->user_id)->value('last_name')}}
+                        </td>
+                        <td>{{$booking->time}}</td>
+                        <td>{{$booking->symptoms}}</td>
+                        <td>{{$booking->phone_number}}</td>
                     </tr>
                     @endforeach
                     </tbody>
