@@ -40,7 +40,7 @@
                     <div class="nav-item has-sub">
                         <a href="javascript:void(0)"><i class="ik ik-layers"></i><span>Wizyty</span></a>
                         <div class="submenu-content">
-                            <a href="" class="menu-item">Akceptuj zgłoszenia</a>
+                            <a href="{{route('booking.index')}}" class="menu-item">Akceptuj zgłoszenia</a>
                             <a href="" class="menu-item">Generuj listę pacjentów</a>
                         </div>
                     </div>
