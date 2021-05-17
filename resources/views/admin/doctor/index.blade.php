@@ -56,7 +56,7 @@
                                         <td>{{ $user->specialist }}</td>
                                         <td>
                                             <div class="table-actions">
-                                                <a href="#"><i
+                                                <a href="{{ route('doctor.edit', $user->id) }}"><i
                                                         class="ik ik-edit-2"></i></a>
                                                 <a href="#" data-toggle="modal" data-id="{{ $user->id }}"
                                                     data-target="#deleteDoctorModal"><i class="ik ik-trash-2"></i></a>
