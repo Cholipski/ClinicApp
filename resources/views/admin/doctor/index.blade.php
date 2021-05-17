@@ -2,6 +2,16 @@
 
 
 @section('content')
+    @if (Session::has('message'))
+        <div class="alert alert-success">
+            {{ Session::get('message') }}
+        </div>
+    @endif
+    @if (Session::has('errmessage'))
+        <div class="alert alert-danger">
+            {{ Session::get('errmessage') }}
+        </div>
+    @endif
     <div class="page-header">
         <div class="row align-items-end">
             <div class="col-lg-8">
@@ -56,11 +66,18 @@
                                         <td>{{ $user->specialist }}</td>
                                         <td>
                                             <div class="table-actions">
-                                                <a href="{{ route('doctor.edit', $user->id) }}"><i
-                                                        class="ik ik-edit-2"></i></a>
-                                                <a href="#" data-toggle="modal" data-id="{{ $user->id }}"
-                                                    data-target="#deleteDoctorModal"><i class="ik ik-trash-2"></i></a>
+                                                <button href="#" data-toggle="modal" data-data="{{ $user }}"
+                                                    data-target="#showDoctorModal" disabled class="btnShowDoctor"
+                                                    style="background: none;border:none;"><i class="ik ik-eye"></i></button>
+                                                <button onclick="location.href='{{ route('doctor.edit', $user->id) }}';"
+                                                    style="background: none;border:none;"><i
+                                                        class="ik ik-edit-2"></i></button>
+                                                <button href="#" data-toggle="modal" data-id="{{ $user->id }}"
+                                                    data-target="#deleteDoctorModal" disabled class="btnDeleteDoctor"
+                                                    style="background: none;border:none;"><i
+                                                        class="ik ik-trash-2"></i></button>
                                             </div>
+                                            {{-- href="{{ route('doctor.edit', $user->id) }}" --}}
                                         </td>
                                     </tr>
                                 @endforeach
@@ -88,8 +105,9 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-dark" data-dismiss="modal">Zamknij</button>
-                        <form method="post" {{-- action="{{route('doctor.delete')}}" --}}>
+                        <form method="post" action="{{ route('admin.doctor.delete') }}">
                             @csrf
+                            {{ method_field('DELETE') }}
                             <input type="hidden" hidden id="hiddenDoctorId" name="hiddenDoctorId">
                             <button type="submit" class="btn btn-danger">Usuń lekarza</button>
                         </form>
@@ -99,14 +117,58 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="showDoctorModal" tabindex="-1" role="dialog" aria-labelledby="showDoctor"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Informacje o lekarzu</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="text-center">
+                        <img class="rounded-circle" width="150px" height="150px" id="doctorPhoto" src="" />
+                    </div>
+                    <h5 id="doctorName" class="font-weight-bold mt-10 text-center"></h5>
+                    <p id="doctorSpecialist" class="text-center"></p>
+                    <p id="doctorEmail" class="text-center"></p>
+                    <p id="doctorPhone" class="text-center"></p>
+                    <p id="doctorAddress" class="text-center"></p>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-dark" data-dismiss="modal">Zamknij</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 @endsection
 
 @push('scripts')
     <script>
-        $('#deleteDoctorModal').on('show.bs.modal', function(e) {
-            const doctorId = $(e.relatedTarget).data('id');
-            $(".modal-footer #hiddenDoctorId").val(doctorId);
+        $(document).ready(function() {
+            $('.btnShowDoctor').attr('disabled', false);
+            $('.btnDeleteDoctor').attr('disabled', false);
+
+            $('#deleteDoctorModal').on('show.bs.modal', function(e) {
+                const doctorId = $(e.relatedTarget).data('id');
+                $(".modal-footer #hiddenDoctorId").val(doctorId);
+            });
+
+            $('#showDoctorModal').on('show.bs.modal', function(e) {
+                const doctor = $(e.relatedTarget).data('data');
+                $(".modal-body #doctorName").text(doctor.first_name + " " +
+                    doctor.last_name);
+                $(".modal-body #doctorPhone").text("Numer telefonu: " + doctor.phone_number);
+                $(".modal-body #doctorEmail").text("Adres email: " + doctor.email);
+                $(".modal-body #doctorSpecialist").text(doctor.specialist);
+                $(".modal-body #doctorAddress").text("Adres zamieszkania: " + doctor.address);
+                $(".modal-body #doctorPhoto").attr("src", `{{ asset('images') }}/${doctor.image}`);
+            });
         });
 
     </script>

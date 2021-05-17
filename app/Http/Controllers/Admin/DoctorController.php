@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
 
 class DoctorController extends Controller
 {
@@ -114,7 +115,16 @@ class DoctorController extends Controller
 	 */
 	public function destroy($id)
 	{
-		//
+	}
+	public function delete(Request $request)
+	{
+
+		$user = User::where('id', $request->hiddenDoctorId)->get()->first();
+		$user->delete();
+
+
+
+		return redirect()->back()->with('message', 'Lekarz został usunięty!');
 	}
 
 	public function validateStore($request)

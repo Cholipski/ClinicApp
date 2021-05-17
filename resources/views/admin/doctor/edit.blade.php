@@ -18,7 +18,7 @@
                 <div class="page-header-title">
                     <i class="ik ik-inbox bg-blue"></i>
                     <div class="d-inline">
-                        <h5>Dane lekarza</h5>
+                        <h5>Edycja danych lekarza</h5>
                     </div>
                 </div>
             </div>
