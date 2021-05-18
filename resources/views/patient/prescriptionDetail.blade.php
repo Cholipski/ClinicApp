@@ -14,7 +14,7 @@
                 <div class="col-lg-12">
                     <div class="container text-center">
 
-                        <div>{!! DNS1D::getBarcodeHTML( $prescription->barcode , 'C39') !!}</div>
+                        <div>{!! DNS1D::getBarcodeHTML( strval($prescription->barcode) , 'C39',) !!}</div>
                         <div>
                            NUMER: {{$prescription->barcode}}
                         </div>
@@ -29,7 +29,7 @@
                             <h2>{{$prescription->access_code}}</h2>
                         </div>
                         <div class="col-lg-6">
-                            <div>{!!DNS2D::getBarcodeHTML( $prescription->access_code , 'QRCODE',5,5)!!}</div>
+                            <div>{!!DNS2D::getBarcodeHTML( strval($prescription->access_code) , 'QRCODE',5,5)!!}</div>
                         </div>
                     </div>
                 </div>
