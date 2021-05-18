@@ -35,19 +35,15 @@ Route::group(['middleware'=>['auth','Administrator']],function() {
     Route::get('admin/booking/accepted_booked/{id}', 'Admin\BookingController@accepted_booked')->name('booking.accepted_booked');
 
     Route::post('admin/appointment/check','Admin\AppointmentController@check')->name('appointment.check');
-
-    Route::resource('doctor/home', 'Doctor\HomeController');
-    Route::resource('doctor/patient', 'Doctor\PatientController');
-    Route::resource('doctor/patient_today', 'Doctor\PatientTodayController');
     Route::post('admin/generate/list','Admin\GenerateController@generate')->name('generate.list');
 
 });
 
 
 Route::group(['middleware' => ['auth', 'Doctor']], function () {
-	Route::get('/doctor/home', 'Doctor\DoctorController@amount')->name('doctor.home');
-	Route::get('doctor/home/list', 'Doctor\DoctorController@index')->name('doctor.home.index');
-	Route::get('doctor/home/show', 'Doctor\DoctorController@show')->name('doctor.home.show');
+    Route::resource('doctor/home', 'Doctor\HomeController');
+    Route::resource('doctor/patient', 'Doctor\PatientController');
+    Route::resource('doctor/patient_today', 'Doctor\PatientTodayController');
 });
 
 Route::group(['middleware' => ['auth', 'Patient']], function () {
