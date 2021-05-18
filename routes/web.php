@@ -36,9 +36,13 @@ Route::group(['middleware'=>['auth','Administrator']],function() {
 
     Route::post('admin/appointment/check','Admin\AppointmentController@check')->name('appointment.check');
 
+    Route::resource('doctor/home', 'Doctor\HomeController');
+    Route::resource('doctor/patient', 'Doctor\PatientController');
+    Route::resource('doctor/patient_today', 'Doctor\PatientTodayController');
     Route::post('admin/generate/list','Admin\GenerateController@generate')->name('generate.list');
 
 });
+
 
 Route::group(['middleware' => ['auth', 'Doctor']], function () {
 	Route::get('/doctor/home', 'Doctor\DoctorController@amount')->name('doctor.home');

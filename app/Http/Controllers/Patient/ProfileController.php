@@ -16,7 +16,7 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        return view('patient/Profile');
+        return view('patient/profile');
     }
 
     /**

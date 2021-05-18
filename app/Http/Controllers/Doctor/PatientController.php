@@ -1,16 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Patient;
+namespace App\Http\Controllers\Doctor;
 
 use App\Http\Controllers\Controller;
-use App\Http\Middleware\Doctor;
-use App\Models\Medicament;
-use App\Models\Prescription;
+use App\Models\Booking;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Milon\Barcode\DNS1D;
 
-class PrescriptionController extends Controller
+class PatientController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,12 +16,12 @@ class PrescriptionController extends Controller
      */
     public function index()
     {
-        $prescriptions = Prescription::where('id_patient',auth()->user()->id)
-            ->leftjoin('users','users.id','prescriptions.id_doctor')
-            ->select('prescriptions.id','prescriptions.invoice_date','prescriptions.access_code',
-                'prescriptions.barcode','prescriptions.implementation_date','users.first_name','users.last_name')
+        $patients = Booking::select('Bookings.*','users.*')
+            ->where('doctor_id',auth()->user()->id)
+            ->join('users','user_id','users.id')
+            ->groupBy('Bookings.user_id')
             ->get();
-        return view('patient.prescription',compact('prescriptions'));
+        return view('doctor.patientList',compact('patients'));
     }
 
     /**
@@ -56,15 +53,7 @@ class PrescriptionController extends Controller
      */
     public function show($id)
     {
-        $prescription = Prescription::where('id_patient',auth()->user()->id)
-            ->where('id',$id)
-            ->get()
-            ->first();
-        $patient = User::where('id',$prescription->id_patient)->get()->first();
-        $doctor = User::where('id',$prescription->id_doctor)->get()->first();
-        $medicaments = Medicament::where('id_prescription',$prescription->id)->get();
-        return view('patient.prescriptionDetail',compact('prescription',
-            'patient','doctor','medicaments'));
+        //
     }
 
     /**

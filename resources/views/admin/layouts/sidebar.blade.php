@@ -44,32 +44,20 @@
                             <a href="{{route('generate.index')}}" class="menu-item">Generuj listę pacjentów</a>
                         </div>
                     </div>
-
-                    @elseif(Auth::user()->role->name=="Doktor")
-
-                        <div class="nav-item ">
-                            <a href="{{route('doctor.home')}}"><i class="ik ik-layers"></i><span>Home</span></a>
-                        </div>
-
-                        <div class="nav-item ">
-                            <a href="{{route('doctor.home.index')}}"><i class="ik ik-layers"></i><span>Lista pacjentow</span></a>
-                        </div>
-
-                        <div class="nav-item ">
-                            <a href="{{route('doctor.home.show')}}"><i class="ik ik-layers"></i><span>Ukonczone wizyty</span></a>
-                        </div>
-
-
                     @endif
                     @if(Auth::user()->role->name=="Doktor")
+                        <div class="nav-item">
+                            <a href="{{route('home.index')}}"><i class="ik ik-layers"></i><span>Strona główna</span></a>
+                        </div>
                         <div class="nav-item has-sub">
                             <a href="javascript:void(0)"><i class="ik ik-layers"></i><span>Pacjenci</span></a>
                             <div class="submenu-content">
-                                <a href="{{route('doctor.index')}}" class="menu-item">Lista pacjentów</a>
+                                <a href="{{route('patient.index')}}" class="menu-item">Lista pacjentów</a>
                             </div>
                         </div>
+
                         <div class="nav-item">
-                            <a href=""><i class="ik ik-layers"></i><span>Dzisiejsze wizyty</span></a>
+                            <a href="{{route('patient_today.index')}}"><i class="ik ik-layers"></i><span>Dzisiejsze wizyty</span></a>
                         </div>
 
                     @endif

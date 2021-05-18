@@ -23,11 +23,14 @@
             </div>
             <div class="row text-center mt-4">
                 <div class="col-lg-12">
-                    <div>
-                        <h4>Kod dostępu:</h4>
-                    </div>
-                    <div>
-                        <h2>{{$prescription->access_code}}</h2>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <h4>Kod dostępu:</h4>
+                            <h2>{{$prescription->access_code}}</h2>
+                        </div>
+                        <div class="col-lg-6">
+                            <img src="data:image/png;base64,{{DNS2D::getBarcodePNG( $prescription->access_code , 'QRCODE')}}" alt="qrcode" />
+                        </div>
                     </div>
                 </div>
             </div>

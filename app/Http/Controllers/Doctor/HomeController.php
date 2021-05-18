@@ -7,21 +7,12 @@ use App\Models\Booking;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class DoctorController extends Controller
+class HomeController extends Controller
 {
 
     public function index()
     {
-        $doctor = Auth::user()->getAuthIdentifier();
-        $date = date('Y-m-d');
-        $users = Booking::where('date',$date)
-            ->where('doctor_id',$doctor)
-            ->where('status',0)
-            ->leftJoin('users','users.id' ,'=' ,'bookings.user_id')
-            ->select('users.first_name as name', 'users.last_name as last_name',
-                'bookings.date','bookings.time', 'bookings.symptoms', 'bookings.status' )
-            ->get();
-        return view('doctor.list', compact('users'));
+        return view('doctor.home');
     }
 
     public function amount()
