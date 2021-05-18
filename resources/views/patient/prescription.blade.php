@@ -43,11 +43,7 @@
         </div>
 
     @else
-        <div class="container text-center" style="border: 1px solid #a1a1a1;padding: 15px;width: 70%;">
-
-            <img src="data:image/png;base64,{{DNS1D::getBarcodePNG('676554255367', 'C39')}}" alt="barcode" />
-
-        </div>
+        Brak recept
     @endif
 
 

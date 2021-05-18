@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>ThemeKit - Admin Template</title>
+    <title>Przychodnia kortowo</title>
     <meta name="description" content="">
     <meta name="keywords" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -26,7 +26,6 @@
     <link rel="stylesheet" href="{{asset('template/plugins/owl.carousel/dist/assets/owl.theme.default.min.css')}}">
     <link rel="stylesheet" href="{{asset('template/dist/css/theme.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/admin.css')}}">
-    <link rel="stylesheet" href="{{asset('css/admin2.css')}}">
     <script src="{{asset('template/src/js/vendor/modernizr-2.8.3.min.js')}}"></script>
 
 </head>
@@ -55,7 +54,6 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                             <a class="dropdown-item" href="profile.html"><i class="ik ik-user dropdown-icon"></i> Profil</a>
-                            <a class="dropdown-item" href="#"><i class="ik ik-settings dropdown-icon"></i> Ustawienia</a>
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -71,3 +69,4 @@
             </div>
         </div>
     </header>
+
