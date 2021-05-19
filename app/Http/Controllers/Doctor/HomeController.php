@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Doctor;
 
 use App\Http\Controllers\Controller;
 use App\Models\Booking;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -12,7 +13,14 @@ class HomeController extends Controller
 
     public function index()
     {
-        return view('doctor.home');
+        $doctor = Auth::user()->getAuthIdentifier();
+        $date = date('Y-m-d');
+        $today = Booking::where('date',$date)
+            ->where('doctor_id',$doctor)
+            ->count();
+        $total = User::where('role_id',3)
+            ->count();
+        return view('doctor.home', compact('today','total'));
     }
 
     public function amount()
@@ -22,7 +30,7 @@ class HomeController extends Controller
         $amount = Booking::where('date',$date)
             ->where('doctor_id',$doctor)
             ->count();
-
+        dd($amount);
         return view('doctor.home', compact('amount'));
     }
     /**

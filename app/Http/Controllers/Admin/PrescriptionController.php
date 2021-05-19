@@ -1,14 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Patient;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Middleware\Doctor;
-use App\Models\Medicament;
 use App\Models\Prescription;
-use App\Models\User;
 use Illuminate\Http\Request;
-use Milon\Barcode\DNS1D;
 
 class PrescriptionController extends Controller
 {
@@ -19,13 +15,12 @@ class PrescriptionController extends Controller
      */
     public function index()
     {
-        $prescriptions = Prescription::where('id_patient',auth()->user()->id)
-            ->leftjoin('users','users.id','prescriptions.id_doctor')
-            ->select('prescriptions.id as id','prescriptions.invoice_date as invoice_date','prescriptions.access_code as code',
-                'prescriptions.barcode','prescriptions.implementation_date as implementation_date',
-                'users.first_name as first_name','users.last_name as last_name')
+        $prescriptions = Prescription::query()
+            ->leftjoin('users','users.id','prescriptions.id_patient')
+            ->select('prescriptions.id','prescriptions.invoice_date','prescriptions.access_code as code',
+                'prescriptions.barcode','prescriptions.implementation_date','users.first_name','users.last_name')
             ->get();
-        return view('patient.prescription',compact('prescriptions'));
+        return view('admin.patient.prescription',compact('prescriptions'));
     }
 
     /**
@@ -57,15 +52,7 @@ class PrescriptionController extends Controller
      */
     public function show($id)
     {
-        $prescription = Prescription::where('id_patient',auth()->user()->id)
-            ->where('id',$id)
-            ->get()
-            ->first();
-        $patient = User::where('id',$prescription->id_patient)->get()->first();
-        $doctor = User::where('id',$prescription->id_doctor)->get()->first();
-        $medicaments = Medicament::where('id_prescription',$prescription->id)->get();
-        return view('patient.prescriptionDetail',compact('prescription',
-            'patient','doctor','medicaments'));
+        return view('admin.patient.medicaments');
     }
 
     /**

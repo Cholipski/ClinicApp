@@ -21,6 +21,7 @@ class PatientController extends Controller
             ->join('users','user_id','users.id')
             ->groupBy('Bookings.user_id')
             ->get();
+
         return view('doctor.patientList',compact('patients'));
     }
 

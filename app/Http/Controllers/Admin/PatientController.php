@@ -15,6 +15,7 @@ class PatientController extends Controller
     public function index()
     {
         $patients = User::where('role_id',3)->get();
+
         return view('admin.patient.index',compact('patients'));
     }
 

@@ -32,8 +32,8 @@
                     <div class="nav-item has-sub">
                         <a href="javascript:void(0)"><i class="ik ik-layers"></i><span>Pacjenci</span></a>
                         <div class="submenu-content">
-                            <a href="{{route('patient.index')}}" class="menu-item">Lista pacjentów</a>
-                            <a href="" class="menu-item">Recepty</a>
+                            <a href="{{route('Patient.index')}}" class="menu-item">Lista pacjentów</a>
+                            <a href="{{route('Prescription.index')}}" class="menu-item">Recepty</a>
                             <a href="" class="menu-item">Historia wizyt</a>
                         </div>
                     </div>

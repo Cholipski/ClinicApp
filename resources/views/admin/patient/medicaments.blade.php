@@ -1,4 +1,5 @@
 @extends('admin.layouts.master')
+
 @section('content')
-aaadasdasdasd
+    asdsad
 @endsection
