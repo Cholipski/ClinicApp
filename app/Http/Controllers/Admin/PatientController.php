@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Booking;
+use App\Models\Prescription;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\User;
@@ -28,7 +30,17 @@ class PatientController extends Controller
     {
         //
     }
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function list()
+    {
+        $bookings = Booking::where('status',1)->get();
 
+        return view('admin.patient.list', compact('bookings'));
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -46,9 +58,21 @@ class PatientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+
+
+
+    public function show(int $id)
     {
-        //
+        $bookings = Booking::where('id',$id)
+        ->select('bookings.id','bookings.user_id','bookings.doctor_id', 'bookings.date')
+        ->get();
+
+        $prescript = Prescription::where('id_doctor',$bookings->first()->doctor_id)
+            ->where('id_patient', $bookings->first()->user_id)
+            ->where('invoice_date', $bookings->first()->date)
+            ->get();
+
+        return view('admin.patient.listDetail', compact('bookings', 'prescript'));
     }
 
     /**

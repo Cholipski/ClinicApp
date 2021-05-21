@@ -1,8 +1,10 @@
 <div class="page-wrap">
     <div class="app-sidebar colored">
         <div class="sidebar-header">
-            <a class="header-brand" href="index.html">
-
+            <a class="header-brand" href="
+                 @if(Auth::user()->role->name=="Administrator")
+                    {{route('admin.home')}}
+                 @endif ">
                 <span class="text">Przychodnia</span>
             </a>
             <button type="button" class="nav-toggle"><i data-toggle="expanded" class="ik ik-toggle-right toggle-icon"></i></button>
@@ -34,7 +36,7 @@
                         <div class="submenu-content">
                             <a href="{{route('Patient.index')}}" class="menu-item">Lista pacjentów</a>
                             <a href="{{route('Prescription.index')}}" class="menu-item">Recepty</a>
-                            <a href="" class="menu-item">Historia wizyt</a>
+                            <a href="{{route('admin.patient.list')}}" class="menu-item">Historia wizyt</a>
                         </div>
                     </div>
                     <div class="nav-item has-sub">

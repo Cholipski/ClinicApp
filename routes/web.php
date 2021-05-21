@@ -21,9 +21,7 @@ Route::resource('/', 'HomeController')->middleware('auth');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::group(['middleware'=>['auth','Administrator']],function() {
-    Route::get('/admin/home', function () {
-        return view('admin.home');
-    });
+    Route::get('/admin/home','Admin\DoctorController@home')->name('admin.home');
     Route::resource('admin/doctor', 'Admin\DoctorController');
     Route::resource('admin/appointment', 'Admin\AppointmentController');
     Route::resource('admin/weekly_appointment', 'Admin\WeeklyAppointmentController');
@@ -37,7 +35,7 @@ Route::group(['middleware'=>['auth','Administrator']],function() {
 
     Route::post('admin/appointment/check','Admin\AppointmentController@check')->name('appointment.check');
     Route::post('admin/generate/list','Admin\GenerateController@generate')->name('generate.list');
-
+    Route::get('admin/patient/list', 'Admin\PatientController@list')->name('admin.patient.list');
 });
 
 
