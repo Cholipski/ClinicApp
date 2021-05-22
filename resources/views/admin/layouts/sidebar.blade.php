@@ -44,6 +44,9 @@
                             <a href="{{route('generate.index')}}" class="menu-item">Generuj listę pacjentów</a>
                         </div>
                     </div>
+                    <div class="nav-item">
+                        <a href="{{route('card_doctor.index')}}"><i class="ik ik-layers"></i><span>Karta lekarza</span></a>
+                    </div>
                     @endif
                     @if(Auth::user()->role->name=="Doktor")
                         <div class="nav-item">
