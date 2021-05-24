@@ -16,7 +16,7 @@
             </a>
         </div>
         <div class="col-lg-4">
-            <a class="patient-menu" href="">
+            <a class="patient-menu" href="{{route('history.index')}}">
                 <div class="card">
                     <div class="card-header">
                         <i class="fas fa-history main-icon"></i>
