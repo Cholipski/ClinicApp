@@ -172,6 +172,36 @@
     });
 
 </script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#prescription_table').DataTable({
+            "language": {
+                "decimal": "",
+                "emptyTable": "Brak danych w tabeli",
+                "info": "Wyświetlono od _START_ do _END_  (liczba recept: _TOTAL_ )",
+                "infoEmpty": "Wyświetlono od 0 do 0 z 0 recept",
+                "infoFiltered": "(filtered from _MAX_ total entries)",
+                "infoPostFix": "",
+                "thousands": ",",
+                "lengthMenu": "Pokaż _MENU_ recept",
+                "loadingRecords": "Ładowanie...",
+                "processing": "Przetwarzanie...",
+                "search": "Szukaj:",
+                "zeroRecords": "Nie znaleziono pasujących recept",
+                "paginate": {
+                    "first": "Pierwsza",
+                    "last": "Ostatnia",
+                    "next": "Następna",
+                    "previous": "Poprzednia"
+                },
+                "aria": {
+                    "sortAscending": ": activate to sort column ascending",
+                    "sortDescending": ": activate to sort column descending"
+                }
+            }
+        });
+    });
+</script>
 <script>
     (function(b, o, i, l, e, r) {
         b.GoogleAnalyticsObject = l;

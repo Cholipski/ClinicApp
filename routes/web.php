@@ -29,13 +29,19 @@ Route::group(['middleware'=>['auth','Administrator']],function() {
     Route::resource('admin/booking', 'Admin\BookingController');
     Route::resource('admin/Prescription', 'Admin\PrescriptionController');
     Route::resource('admin/generate','Admin\GenerateController');
+    Route::resource('admin/card_doctor','Admin\CardDoctorController');
+
     Route::delete('admin/doctor', 'Admin\DoctorController@delete')->name('admin.doctor.delete');;
     Route::get('admin/booking/rejected_booked/{id}', 'Admin\BookingController@rejected_booked')->name('booking.rejected_booked');
     Route::get('admin/booking/accepted_booked/{id}', 'Admin\BookingController@accepted_booked')->name('booking.accepted_booked');
 
     Route::post('admin/appointment/check','Admin\AppointmentController@check')->name('appointment.check');
     Route::post('admin/generate/list','Admin\GenerateController@generate')->name('generate.list');
+
     Route::get('admin/patient/list', 'Admin\PatientController@list')->name('admin.patient.list');
+
+    Route::post('admin/card_doctor/check','Admin\CardDoctorController@check')->name('card_doctor.check');
+
 });
 
 
