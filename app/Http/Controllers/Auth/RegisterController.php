@@ -6,9 +6,12 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use App\Models\Role;
+use http\Url;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -30,7 +33,9 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected function redirectTo(){
+        return '/register';
+    }
 
     /**
      * Create a new controller instance.
@@ -41,6 +46,7 @@ class RegisterController extends Controller
     {
         $this->middleware('guest');
     }
+
 
     /**
      * Get a validator for an incoming registration request.
@@ -58,6 +64,7 @@ class RegisterController extends Controller
             'gender' => 'required'
         ]);
     }
+
 
     /**
      * Create a new user instance after a valid registration.
@@ -77,5 +84,26 @@ class RegisterController extends Controller
             'role_id' => $role->id,
             'gender' => $data['gender'],
         ]);
+    }
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        event(new Registered($user = $this->create($request->all())));
+
+        //$this->guard()->login($user);
+
+        if ($response = $this->registered($request, $user)) {
+            return $response;
+        }
+
+        return $request->wantsJson()
+            ? new JsonResponse([], 201)
+            : redirect($this->redirectTo());
+    }
+
+    protected function registered(Request $request, $user)
+    {
+        $request->session()->flash('notification','Check your email');
     }
 }

@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,10 +16,10 @@ use Illuminate\Support\Facades\Route;
 
 
 Auth::routes(['verify' => true]);
+
 Route::resource('/', 'HomeController')->middleware('auth');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
 Route::group(['middleware'=>['auth','Administrator']],function() {
     Route::get('/admin/home', function () {
         return view('admin.home');
