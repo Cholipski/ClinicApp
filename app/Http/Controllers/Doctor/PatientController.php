@@ -16,10 +16,10 @@ class PatientController extends Controller
      */
     public function index()
     {
-        $patients = Booking::select('Bookings.*','users.*')
+        $patients = Booking::select('bookings.*','users.*')
             ->where('doctor_id',auth()->user()->id)
             ->join('users','user_id','users.id')
-            ->groupBy('Bookings.user_id')
+            ->groupBy('bookings.user_id')
             ->get();
 
         return view('doctor.patientList',compact('patients'));

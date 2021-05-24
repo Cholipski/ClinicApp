@@ -19,7 +19,7 @@ class DoctorController extends Controller
 	public function index()
 	{
 		$users = User::where('role_id', 1)->get();
-		return view('Admin.doctor.index', compact('users'));
+		return view('admin.doctor.index', compact('users'));
 	}
 
     public function home()
@@ -43,7 +43,7 @@ class DoctorController extends Controller
             ->get();
 
 
-        return view('Admin.home',compact('users_amount', 'doctor_amount', 'amount', 'amount_appointments','patient','doctor'));
+        return view('admin.home',compact('users_amount', 'doctor_amount', 'amount', 'amount_appointments','patient','doctor'));
     }
 	/**
 	 * Show the form for creating a new resource.
@@ -52,7 +52,7 @@ class DoctorController extends Controller
 	 */
 	public function create()
 	{
-		return view('Admin.doctor.create');
+		return view('admin.doctor.create');
 	}
 
 	/**

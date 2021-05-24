@@ -10,7 +10,7 @@
                     </div>
                 </div>
             </div>
-    
+
             <div class="row clearfix">
                 <div class="col-lg-3 col-md-6 col-sm-12">
                     <div class="widget" style="height: 120px; background: linear-gradient(180deg, #FFFFFF 92%, #d9534f 8%);">
@@ -73,7 +73,7 @@
                     </div>
                 </div>
             </div>
-    
+
             <div class="row">
                 <div class="col-md-8">
                     <div class="card" style="min-height: 422px;">
@@ -96,19 +96,20 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card" style="min-height: 422px;">
-                    <div class="card-header justify-content-center">
-                        <h3 >Zegar</h3>
-                    </div>
-                    <div class="card-body d-flex justify-content-center">
-                        <div id="MyClockDisplay" onload="showTime()" style="margin-top: 5rem;"></div>
+                <div class="col-md-4">
+                    <div class="card" style="min-height: 422px;">
+                        <div class="card-header justify-content-center">
+                            <h3 >Zegar</h3>
+                        </div>
+                        <div class="card-body d-flex justify-content-center">
+                            <div id="MyClockDisplay" onload="showTime()" style="margin-top: 5rem;"></div>
+                        </div>
                     </div>
                 </div>
             </div>
+
         </div>
-    
+
         <div class="card">
             <div class="card-body">
                 <h3 class="card-title mb-3">Wizyty do zaakceptowania</h3>

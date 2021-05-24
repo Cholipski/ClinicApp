@@ -18,7 +18,7 @@ class BookingController extends Controller
     public function index()
     {
         $bookings = Booking::where('status',0)->get();
-        return view('Admin.appointment.booking', compact('bookings'));
+        return view('admin.appointment.booking', compact('bookings'));
     }
 
     /**
