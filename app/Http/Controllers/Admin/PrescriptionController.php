@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Medicament;
 use App\Models\Prescription;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class PrescriptionController extends Controller
@@ -17,8 +19,8 @@ class PrescriptionController extends Controller
     {
         $prescriptions = Prescription::query()
             ->leftjoin('users','users.id','prescriptions.id_patient')
-            ->select('prescriptions.id','prescriptions.invoice_date','prescriptions.access_code as code',
-                'prescriptions.barcode','prescriptions.implementation_date','users.first_name','users.last_name')
+            ->select('prescriptions.id','prescriptions.invoice_date',
+                'prescriptions.barcode as barcode','users.first_name','users.last_name')
             ->get();
         return view('admin.patient.prescription',compact('prescriptions'));
     }
@@ -52,7 +54,15 @@ class PrescriptionController extends Controller
      */
     public function show($id)
     {
-        return view('admin.patient.medicaments');
+        $prescription = Prescription::where('id',$id)
+            ->get()
+            ->first();
+
+        $patient = User::where('id',$prescription->id_patient)->get()->first();
+        $doctor = User::where('id',$prescription->id_doctor)->get()->first();
+        $medicaments = Medicament::where('id_prescription',$prescription->id)->get();
+
+        return view('admin.patient.prescriptionDetail',compact('prescription','patient', 'doctor','medicaments'));
     }
 
     /**

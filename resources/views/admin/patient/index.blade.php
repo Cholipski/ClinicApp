@@ -12,7 +12,6 @@
                             <th>Email</th>
                             <th>Adres</th>
                             <th>Telefon</th>
-                            <th>Opcje</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -23,10 +22,6 @@
                             <td>{{$patient->email}}</td>
                             <td>{{$patient->address}}</td>
                             <td>{{$patient->phone_number}}</td>
-                            <td>
-                                <button class="btn btn-dribbble">Szczegóły</button>
-                                <button class="btn btn-danger">Usuń</button>
-                            </td>
                         </tr>
                         @endforeach
                         </tbody>
