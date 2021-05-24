@@ -27,8 +27,9 @@ Route::group(['middleware'=>['auth','Administrator']],function() {
     Route::resource('admin/doctor', 'Admin\DoctorController');
     Route::resource('admin/appointment', 'Admin\AppointmentController');
     Route::resource('admin/weekly_appointment', 'Admin\WeeklyAppointmentController');
-    Route::resource('admin/patient', 'Admin\PatientController');
+    Route::resource('admin/Patient', 'Admin\PatientController');
     Route::resource('admin/booking', 'Admin\BookingController');
+    Route::resource('admin/Prescription', 'Admin\PrescriptionController');
     Route::resource('admin/generate','Admin\GenerateController');
     Route::delete('admin/doctor', 'Admin\DoctorController@delete')->name('admin.doctor.delete');;
     Route::get('admin/booking/rejected_booked/{id}', 'Admin\BookingController@rejected_booked')->name('booking.rejected_booked');
