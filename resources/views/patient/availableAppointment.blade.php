@@ -4,11 +4,11 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-3">
-                <div class="card">
+                <div class="card card-doc">
                     <div class="card-header">
                         Lekarz
                     </div>
-                    <div class="card-body">
+                    <div class="card-body ">
                         @if(isset($doctor))
                             <div class="row">
                                 <div class="col-lg-12">
@@ -16,24 +16,24 @@
                                 </div>
                             </div>
                             <div class="row pt-2">
-                                <div class="col-lg-6">Imię</div>
-                                <div class="col-lg-6">{{$doctor->first_name}}</div>
+                                <div class="col-lg-12">Imię: {{$doctor->first_name}}</div>
+                                
                             </div>
                             <div class="row pt-2">
-                                <div class="col-lg-6">Nazwisko</div>
-                                <div class="col-lg-6">{{$doctor->last_name}}</div>
+                                <div class="col-lg-12">Nazwisko: {{$doctor->last_name}}</div>
                             </div>
                             <div class="row pt-2">
-                                <div class="col-lg-6">Specjalizacja</div>
-                                <div class="col-lg-6">{{$doctor->specialist}}</div>
+                                <div class="col-lg-12">Specjalizacja: {{$doctor->specialist}}</div>
                             </div>
                         @endif
                     </div>
+                    
                 </div>
+                
                 @if(isset($times))
                     <div class="row pt-4">
                         <div class="col-lg-12">
-                            <a href="{{url()->previous()}}" style="width:100%;" class="btn btn-dark pt-4">Powrót</a>
+                            <a href="{{url()->previous()}}" style="width:100%;" class="btn btn-dark">Cofnij</a>
                         </div>
                     </div>
                 @endif
@@ -46,36 +46,27 @@
                     </div>
                 @endif
 
-                <div class="card">
+                <div class="card card-doc">
                     <div class="card-header">
                         Dostępne terminy
                     </div>
                     <div class="card-body">
                         <table id="patient_table" class="table">
-                            <thead>
-                            <tr>
-                                <th scope="col">id</th>
-                                <th scope="col">Data</th>
-                                <th scope="col">Akcje</th>
-                            </tr>
-                            </thead>
                             <tbody>
-
                                 @foreach($dates as $date)
                                     <tr>
-                                        <th scope="row">{{$date->id}}</th>
                                         <td>{{$date->date}}</td>
                                         <td><a class="btn btn-dark" href="{{route('book.showTimes',[$id,$date->date])}}">Pokaż dostepne godziny</a></td>
                                     </tr>
                                 @endforeach
-
-
-                            </tbody>
+                            </tbody>     
                         </table>
-
+                        {{$dates->links()}}
                     </div>
-                    <a href="{{route('new_appointment.index')}}" class="btn btn-dark pt-4">Powrót</a>
                 </div>
+                <br>
+                <a href="{{route('new_appointment.index')}}" class="btn btn-dark col-lg-2 ">Cofnij</a>
+                
             </div>
             @endif
             @if(isset($times))
@@ -91,8 +82,9 @@
                         </div>
                     @endif
                     <div class="card">
-                        <div class="card-header">
+                        <div class="heading-time mt-4">
                             Dostępne godziny
+                            <hr>
                         </div>
                         <div class="card-body">
                             <form action="{{route('new_appointment.store')}}" method="post">@csrf
@@ -106,18 +98,18 @@
                                     <input type="text" hidden value="{{$doctor->id}}" name="doctor_id">
                                 </div>
 
-                                <div class="row mt-5">
+                                <div class="row mt-3 col-lg-12">
                                     <div class="form-group">
                                         <label for="symptomps">Podaj objawy</label>
-                                        <textarea name="symptomps">
+                                        <textarea name="symptomps" placeholder="wpisz swoje objawy">
 
                                         </textarea>
                                     </div>
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-lg-12">
-                                        <button type="submit" style="width:100%;" class="btn btn-dark mt-5">Zarezerwuj wizytę</button>
+                                    <div class="col-lg-6 text-center ">
+                                        <button type="submit" style="width:100%;" class="btn btn-dark mt-1">Zarezerwuj wizytę</button>
                                     </div>
                                 </div>
                             </form>
