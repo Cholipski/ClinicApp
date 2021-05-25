@@ -1,35 +1,160 @@
-.main-icon{
-    font-size: 9em;
+.main-icon {
+    font-size: 7em;
     text-align: center;
 }
-.card-header{
+.card-header {
     text-align: center;
 }
-.card-body{
+.card-body {
     text-align: center;
 }
-.patient-menu{
+.patient-menu {
     text-decoration: none;
     color: black;
 }
 
-.form-group{
+.form-group {
     width: 100% !important;
 }
-textarea{
+textarea {
     width: 100% !important;
 }
 
-.radio_appointment{
-
+.radio_appointment {
 }
-.btn_appointment{
+.btn_appointment {
     width: 100px;
 }
 
-#no-appointment-cancel{
+#no-appointment-cancel {
     font-size: 25px !important;
-    color: #5A5A5A;
-
+    color: #5a5a5a;
+}
+/*----------------- */
+.btn-login {
+    width: 150px;
+    height: 30px;
+    background: #98d4ca;
+    border-radius: 5px;
+    border-color: #98d4ca;
+    font-size: 16px;
 }
 
+.image-flip:hover .back,
+.image-flip.hover .back {
+    -webkit-transform: rotateY(0deg);
+    -moz-transform: rotateY(0deg);
+    -o-transform: rotateY(0deg);
+    -ms-transform: rotateY(0deg);
+    transform: rotateY(0deg);
+    border-radius: 0.25rem;
+}
+
+.image-flip:hover .front,
+.image-flip.hover .front {
+    -webkit-transform: rotateY(180deg);
+    -moz-transform: rotateY(180deg);
+    -o-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+}
+
+.mainflip {
+    -webkit-transition: 1s;
+    -webkit-transform-style: preserve-3d;
+    -ms-transition: 1s;
+    -moz-transition: 1s;
+    -moz-transform: perspective(1000px);
+    -moz-transform-style: preserve-3d;
+    -ms-transform-style: preserve-3d;
+    transition: 1s;
+    transform-style: preserve-3d;
+    position: relative;
+}
+
+.back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    -webkit-transform: rotateY(-180deg);
+    -moz-transform: rotateY(-180deg);
+    -o-transform: rotateY(-180deg);
+    -ms-transform: rotateY(-180deg);
+    transform: rotateY(-180deg);
+}
+
+.front,
+.back {
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-transition: 1s;
+    -webkit-transform-style: preserve-3d;
+    -moz-transition: 1s;
+    -moz-transform-style: preserve-3d;
+    -o-transition: 1s;
+    -o-transform-style: preserve-3d;
+    -ms-transition: 1s;
+    -ms-transform-style: preserve-3d;
+    transition: 1s;
+    transform-style: preserve-3d;
+}
+
+.front .card,
+.back .card {
+    min-height: 312px;
+    border-radius: 5%;
+    background-color: white;
+    box-shadow: 0 0 1em rgb(170, 178, 180);
+}
+
+.back .card a {
+    font-size: 14px;
+    color: white !important;
+}
+
+.front .card .card-title,
+.back .card .card-title {
+    color: black !important;
+}
+
+.front .card .card-body img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+}
+.btn-available-date {
+    color: black;
+    background: black;
+    border-radius: 5px;
+}
+
+.tr:hover {
+    background-color: #98d4ca;
+    cursor: pointer;
+}
+
+.img-banner {
+    background-image: url("/images/back.png");
+    height: 45vh;
+    background-size: cover;
+    border-radius: 2vh;
+    box-shadow: 0 0 1em rgb(170, 178, 180);
+}
+
+.card-doc {
+    box-shadow: 0 0 1em rgb(170, 178, 180);
+    font-size: 16px;
+}
+.form-down {
+    font-size: 18px;
+}
+/*----cancel-Appointment--*/
+.heading {
+    font-size: 42px;
+    text-align: center;
+}
+.heading-time {
+    font-size: 28px;
+    text-align: center;
+}

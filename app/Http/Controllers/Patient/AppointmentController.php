@@ -78,7 +78,7 @@ class AppointmentController extends Controller
         $dates = Appointment::where('user_id',$id)
             ->orderby('date','asc')
             ->whereDate('date','>=',Carbon::today()->toDateString())
-            ->get();
+            ->simplePaginate(10);
         $doctor = User::where('id',$id)->get()->first();
         return view('patient.availableAppointment',compact('dates','id','doctor'));
 

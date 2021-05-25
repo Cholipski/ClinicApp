@@ -12,7 +12,8 @@
                     {{Session::get('message')}}
                 </div>
             @endif
-        <div class="card">
+            <h1 class="heading">Twoje wizyty</h1>
+             <div class="card mt-4">
             @if(isset($appointments))
                 <table id="appointments" class="table">
                     <thead>
@@ -88,7 +89,9 @@
                 </div>
             </div>
         </div>
+        <a href="{{ url('/') }}" class="btn btn-dark col-lg-2 mt-4 ">Cofnij</a>
     </div>
+    
     <script type="text/javascript">
         $(document).on("click", ".passingID", function () {
             const appointment_id = $(this).data('id');

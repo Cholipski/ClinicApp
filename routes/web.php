@@ -56,5 +56,7 @@ Route::group(['middleware' => ['auth', 'Patient']], function () {
 	Route::post('patient/new_appointment/doctors', 'Patient\AppointmentController@doctorlist')->name('book.doctorlist');
 	Route::post('profile/', 'Patient\ProfileController@changePassword')->name('profile.changePassword');
 
-	Route::get('patient/new_appointment/{doctor}/{time_id}', 'Patient\AppointmentController@showTimes')->name('book.showTimes');
+	Route::get('patient/new_appointment/{doctor}/{time_id}', 'Patient\AppointmentController@showTimes')->name('book.showTimes','nazwa');
+
+    
 });
