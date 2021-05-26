@@ -6,6 +6,8 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Notifications\CustomResetPasswordNotification;
+use App\Notifications\CustomEmailVerificationNotification;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -65,5 +67,14 @@ class User extends Authenticatable implements MustVerifyEmail
         $image->move($destination,$name);
 
         return $name;
+    }
+
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new CustomResetPasswordNotification($token));
+    }
+    public function sendEmailVerificationNotification()
+    {
+        $this->notify(new CustomEmailVerificationNotification);
     }
 }

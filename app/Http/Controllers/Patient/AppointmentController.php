@@ -48,7 +48,7 @@ class AppointmentController extends Controller
 
         $date = Appointment::where('id',$appointment_time->appointment_id)->get()->first();
 
-        if(Booking::where('date',$date->date)->get()->first() != null){
+        if(Booking::where('date',$date->date)->where('user_id',auth()->user()->id)->get()->first() != null){
             return redirect()->back()->with('errmessage','Nie można zarezerować dwóch terminów na ten sam dzień');
 
         }

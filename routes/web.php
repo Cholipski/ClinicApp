@@ -17,10 +17,10 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 Auth::routes(['verify' => true]);
 
-Route::resource('/', 'HomeController')->middleware('auth');
+Route::resource('/', 'HomeController')->middleware(['auth','verified']);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::group(['middleware'=>['auth','Administrator']],function() {
+Route::group(['middleware'=>['auth','Administrator','verified']],function() {
     Route::get('/admin/home','Admin\DoctorController@home')->name('admin.home');
     Route::resource('admin/doctor', 'Admin\DoctorController');
     Route::resource('admin/appointment', 'Admin\AppointmentController');
@@ -45,13 +45,13 @@ Route::group(['middleware'=>['auth','Administrator']],function() {
 });
 
 
-Route::group(['middleware' => ['auth', 'Doctor']], function () {
+Route::group(['middleware' => ['auth', 'Doctor','verified']], function () {
     Route::resource('doctor/home', 'Doctor\HomeController');
     Route::resource('doctor/patient', 'Doctor\PatientController');
     Route::resource('doctor/patient_today', 'Doctor\PatientTodayController');
 });
 
-Route::group(['middleware' => ['auth', 'Patient']], function () {
+Route::group(['middleware' => ['auth', 'Patient','verified']], function () {
 	Route::resource('patient/new_appointment', 'Patient\AppointmentController');
 	Route::resource('patient/cancel_appointment', 'Patient\CancelAppointmentController');
 	Route::resource('patient/profile', 'Patient\ProfileController');
