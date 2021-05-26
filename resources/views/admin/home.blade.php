@@ -90,6 +90,7 @@
                                         <h5 class="card-title font-weight-bold border-bottom p-3">{{$patient[$i]['name']}} {{$patient[$i]['last_name']}}</h5>
                                         <p class="card-text">Lekarz: {{$doctor[$i]['doctor_name']}} {{$doctor[$i]['doctor_last_name']}}</p>
                                         <p class="card-text">Przjęcie pacjenta o godzinie: {{$patient[$i]['time']}}</p>
+                                        </div>
                                     </div>
                                 @endfor
                             </div>
@@ -99,7 +100,7 @@
                 <div class="col-md-4">
                     <div class="card" style="min-height: 422px;">
                         <div class="card-header justify-content-center">
-                            <h3 >Zegar</h3>
+                            <h3>Zegar</h3>
                         </div>
                         <div class="card-body d-flex justify-content-center">
                             <div id="MyClockDisplay" onload="showTime()" style="margin-top: 5rem;"></div>
