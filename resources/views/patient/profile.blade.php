@@ -61,8 +61,13 @@
                     </div>
                 </div>
             </div>
-        </form>
+        </form> 
+        <a href="{{ url('/') }}" class="btn btn-dark green col-md-1">Cofnij</a>  
     </div>
+    
+    
+    
+    
     
     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -73,6 +78,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
+                
                 <div class="modal-body">
                     <div class="card card-outline-secondary">
                         <div class="card-body">

@@ -1,18 +1,15 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            @if(session()->has('error'))
-                <div class="alert alert-danger">{{session()->get('error')}}</div>
-            @endif
-            @if(session()->has('success'))
-                <div class="alert alert-success">{{session()->get('success')}}</div>
-            @endif
 
-            <div class="card">
-                <div class="card-header">{{ __('Logowanie do aplikacji') }}</div>
+@if(session()->has('error'))
+<div class="alert alert-danger">{{session()->get('error')}}</div>
+@endif
+@if(session()->has('success'))
+<div class="alert alert-success">{{session()->get('success')}}</div>
+@endif
+
+
 
 <div class="container"> <br> <br>
     <div class="row">
@@ -20,7 +17,7 @@
             <img src="{{URL::asset('/images/dr.png')}}" width="450" height="450">
         </div>
         <div class="col">
-            <form method="POST" action="{{ route('login') }}" >
+            <form method="POST" action="{{ route('login') }}">
                 @csrf
                 <br> <br> <br>
                 <h3>Zaloguj się:</h3> <br>

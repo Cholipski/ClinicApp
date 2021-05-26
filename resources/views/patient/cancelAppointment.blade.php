@@ -59,13 +59,14 @@
                     @endforeach
                     </tbody>
                 </table>
-            @else
-                <div class="d-flex justify-content-center">
-                    <span id="no-appointment-cancel">
-                        Nie znaleziono żadanych wizyt które możesz odwołać
-                    </span>
-                </div>
-            @endif
+                @else
+                    <div class="d-flex justify-content-center">
+                        <span id="no-appointment-cancel">
+                            Nie znaleziono żadanych wizyt w historii
+                        </span>
+                    </div>
+                @endif
+           
         </div>
         <div class="modal fade" id="cancelModal" tabindex="-1" role="dialog" aria-labelledby="cancelAppointment" aria-hidden="true">
             <div class="modal-dialog" role="document">

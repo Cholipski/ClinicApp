@@ -22,6 +22,7 @@
                         </form>
                     </div>
                 </div>
+                
             
         </div>
     </div>
@@ -57,7 +58,9 @@
             @endforeach
             @endif
         </div>
+        <a href="{{ url('/') }}" class="btn btn-dark green col-md-1 mt-5">Cofnij</a> 
     </div>
     @endif
 </div>
+
 @endsection
