@@ -19,6 +19,7 @@
                         <img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
                         <span class="font-weight-bold">{{auth()->user()->first_name}} {{auth()->user()->last_name}}</span>
                         <span class="text-black-50">{{auth()->user()->email}}</span>
+                        <span class="text-black-50">{{auth()->user()->pesel}}</span>
                         <span> </span>
                         <div class="col-lg-12">
                             <div class="d-flex justify-content-between align-items-center tr"><span data-toggle="modal" data-target="#exampleModalCenter" style="width:100%" class="border px-3 p-1 text-center"><i class="fa fa-lock"></i>&nbsp;Zmień hasło</span></div><br>

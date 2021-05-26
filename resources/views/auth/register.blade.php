@@ -61,6 +61,16 @@
               <div class="form-group">
                   <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" placeholder="Potwierdź hasło:">
               </div>
+              
+              <div class="form-group">
+                <input id="pesel" type="pesel" class="form-control @error('pesel') is-invalid @enderror" name="pesel" value="{{ old('pesel') }}" required autocomplete="pesel" placeholder="PESEL:">
+                @error('pesel')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+
+            </div>
               <div class="form-group">
                   <select name="gender" class="form-control @error('gender') is-invalid @enderror">
                       <option value="">Proszę wybrać płeć</option>
