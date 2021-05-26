@@ -94,7 +94,7 @@ class DoctorController extends Controller
 	public function edit($id)
 	{
 		$user = User::findOrFail($id);
-		return view('Admin.doctor.edit', compact('user'));
+		return view('admin.doctor.edit', compact('user'));
 	}
 
 	/**

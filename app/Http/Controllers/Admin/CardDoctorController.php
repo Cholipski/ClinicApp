@@ -32,6 +32,6 @@ class CardDoctorController extends Controller
 
         $prescriptions = Prescription::where('id_doctor', $doctorID)->get();
 
-        return view('Admin.doctor.card_doctor',compact('patients', 'doctor_selected', 'appoinments', 'prescriptions'));
+        return view('admin.doctor.card_doctor',compact('patients', 'doctor_selected', 'appoinments', 'prescriptions'));
     }
 }
