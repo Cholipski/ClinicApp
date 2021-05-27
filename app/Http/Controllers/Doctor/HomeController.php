@@ -15,12 +15,38 @@ class HomeController extends Controller
     {
         $doctor = Auth::user()->getAuthIdentifier();
         $date = date('Y-m-d');
+        $doc = User::where('id',$doctor)
+            ->get();
+
+        $bookings_1 = Booking::where('date',$date)
+            ->where('doctor_id',$doctor)
+            ->where('status',1)
+            ->count();
+        $bookings_0 = Booking::where('date',$date)
+            ->where('doctor_id',$doctor)
+            ->where('status',0)
+            ->count();
+
+        $patient = Booking::where('date',$date)
+            ->where('doctor_id',$doctor)
+            ->where('status',0)
+
+            ->leftJoin('users','users.id' ,'=' ,'bookings.user_id')
+            ->select('users.first_name as name', 'users.last_name as last_name',
+                'bookings.date','bookings.time', 'bookings.symptoms', 'bookings.status' )
+            ->get();
+
+        $patients = $patient->sortBy('time');
+
+        $next = $patients->first();
+
         $today = Booking::where('date',$date)
             ->where('doctor_id',$doctor)
             ->count();
+
         $total = User::where('role_id',3)
             ->count();
-        return view('doctor.home', compact('today','total'));
+        return view('doctor.home', compact('today','total', 'doc','bookings_1','bookings_0','patients', 'next'));
     }
 
     public function amount()
