@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Booking;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Http\Controllers\Controller;
@@ -18,9 +19,32 @@ class DoctorController extends Controller
 	public function index()
 	{
 		$users = User::where('role_id', 1)->get();
-		return view('Admin.doctor.index', compact('users'));
+		return view('admin.doctor.index', compact('users'));
 	}
 
+    public function home()
+    {
+        $doctor_amount = User::where('role_id',1)->count();
+        $users_amount = User::where('role_id',3)->count();
+        $amount = Booking::where('date',date('Y-m-d'))->count();
+        $amount_appointments = Booking::where('date',date('Y-m-d'))->where('status',0)->count();
+
+
+        $patient = Booking::where('date',date('Y-m-d'))
+            ->where('status',0)
+            ->join('users','users.id' ,'=' ,'bookings.user_id')
+            ->select('users.first_name as name', 'users.last_name as last_name',
+                'bookings.date as date','bookings.time as time', 'bookings.doctor_id as doc' , 'users.id as idp'  )
+            ->get();
+        $doctor = Booking::where('date',date('Y-m-d'))
+            ->where('status',0)
+            ->rightJoin('users','users.id' ,'=' ,'bookings.doctor_id')
+            ->select('users.first_name as doctor_name', 'users.last_name as doctor_last_name' , 'users.id as idd')
+            ->get();
+
+
+        return view('admin.home',compact('users_amount', 'doctor_amount', 'amount', 'amount_appointments','patient','doctor'));
+    }
 	/**
 	 * Show the form for creating a new resource.
 	 *
@@ -28,7 +52,7 @@ class DoctorController extends Controller
 	 */
 	public function create()
 	{
-		return view('Admin.doctor.create');
+		return view('admin.doctor.create');
 	}
 
 	/**
@@ -70,7 +94,7 @@ class DoctorController extends Controller
 	public function edit($id)
 	{
 		$user = User::findOrFail($id);
-		return view('Admin.doctor.edit', compact('user'));
+		return view('admin.doctor.edit', compact('user'));
 	}
 
 	/**

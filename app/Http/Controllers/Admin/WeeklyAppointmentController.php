@@ -17,7 +17,7 @@ class WeeklyAppointmentController extends Controller
      */
     public function index()
     {
-        return view('Admin.appointment.index');
+        return view('admin.appointment.index');
     }
 
     /**
@@ -27,7 +27,7 @@ class WeeklyAppointmentController extends Controller
      */
     public function create()
     {
-        return view('Admin.appointment.weekly');
+        return view('admin.appointment.weekly');
     }
 
     /**

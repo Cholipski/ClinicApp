@@ -12,7 +12,8 @@
                     {{Session::get('message')}}
                 </div>
             @endif
-        <div class="card">
+            <h1 class="heading">Twoje wizyty</h1>
+             <div class="card mt-4">
             @if(isset($appointments))
                 <table id="appointments" class="table">
                     <thead>
@@ -58,13 +59,14 @@
                     @endforeach
                     </tbody>
                 </table>
-            @else
-                <div class="d-flex justify-content-center">
-                    <span id="no-appointment-cancel">
-                        Nie znaleziono żadanych wizyt które możesz odwołać
-                    </span>
-                </div>
-            @endif
+                @else
+                    <div class="d-flex justify-content-center">
+                        <span id="no-appointment-cancel">
+                            Nie znaleziono żadanych wizyt w historii
+                        </span>
+                    </div>
+                @endif
+           
         </div>
         <div class="modal fade" id="cancelModal" tabindex="-1" role="dialog" aria-labelledby="cancelAppointment" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -88,7 +90,9 @@
                 </div>
             </div>
         </div>
+        <a href="{{ url('/') }}" class="btn btn-dark col-lg-2 mt-4 ">Cofnij</a>
     </div>
+    
     <script type="text/javascript">
         $(document).on("click", ".passingID", function () {
             const appointment_id = $(this).data('id');

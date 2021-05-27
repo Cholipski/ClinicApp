@@ -177,7 +177,7 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         Milon\Barcode\BarcodeServiceProvider::class,
-
+        App\Providers\FortifyServiceProvider::class,
     ],
 
     /*

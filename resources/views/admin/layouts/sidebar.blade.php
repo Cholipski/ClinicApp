@@ -1,8 +1,10 @@
 <div class="page-wrap">
     <div class="app-sidebar colored">
         <div class="sidebar-header">
-            <a class="header-brand" href="index.html">
-
+            <a class="header-brand" href="
+                 @if(Auth::user()->role->name=="Administrator")
+                    {{route('admin.home')}}
+                 @endif ">
                 <span class="text">Przychodnia</span>
             </a>
             <button type="button" class="nav-toggle"><i data-toggle="expanded" class="ik ik-toggle-right toggle-icon"></i></button>
@@ -32,9 +34,9 @@
                     <div class="nav-item has-sub">
                         <a href="javascript:void(0)"><i class="ik ik-layers"></i><span>Pacjenci</span></a>
                         <div class="submenu-content">
-                            <a href="{{route('patient.index')}}" class="menu-item">Lista pacjentów</a>
-                            <a href="" class="menu-item">Recepty</a>
-                            <a href="" class="menu-item">Historia wizyt</a>
+                            <a href="{{route('Patient.index')}}" class="menu-item">Lista pacjentów</a>
+                            <a href="{{route('Prescription.index')}}" class="menu-item">Recepty</a>
+                            <a href="{{route('admin.patient.list')}}" class="menu-item">Historia wizyt</a>
                         </div>
                     </div>
                     <div class="nav-item has-sub">
@@ -43,6 +45,9 @@
                             <a href="{{route('booking.index')}}" class="menu-item">Akceptuj zgłoszenia</a>
                             <a href="{{route('generate.index')}}" class="menu-item">Generuj listę pacjentów</a>
                         </div>
+                    </div>
+                    <div class="nav-item">
+                        <a href="{{route('card_doctor.index')}}"><i class="ik ik-layers"></i><span>Karta lekarza</span></a>
                     </div>
                     @endif
                     @if(Auth::user()->role->name=="Doktor")

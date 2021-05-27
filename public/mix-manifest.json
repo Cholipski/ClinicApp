@@ -1,6 +1,8 @@
 {
     "/js/app.js": "/js/app.js",
+    "/js/clock.js": "/js/clock.js",
     "/css/app.css": "/css/app.css",
+    "/css/clock.css": "/css/clock.css",
     "/css/admin.css": "/css/admin.css",
     "/css/HomeStyle.css": "/css/HomeStyle.css"
 }

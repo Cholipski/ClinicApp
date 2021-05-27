@@ -19,9 +19,11 @@
                         <img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
                         <span class="font-weight-bold">{{auth()->user()->first_name}} {{auth()->user()->last_name}}</span>
                         <span class="text-black-50">{{auth()->user()->email}}</span>
+                        <span class="text-black-50">{{auth()->user()->pesel}}</span>
                         <span> </span>
                         <div class="col-lg-12">
-                            <div class="d-flex justify-content-between align-items-center"><span data-toggle="modal" data-target="#exampleModalCenter" style="width:100%" class="border px-3 p-1 text-center"><i class="fa fa-lock"></i>&nbsp;Zmień hasło</span></div><br>
+                            <div class="d-flex justify-content-between align-items-center tr"><span data-toggle="modal" data-target="#exampleModalCenter" style="width:100%" class="border px-3 p-1 text-center"><i class="fa fa-lock"></i>&nbsp;Zmień hasło</span></div><br>
+                            
                         </div>
                     </div>
                 </div>
@@ -58,11 +60,16 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
-        </form>
+        </form> 
+        <a href="{{ url('/') }}" class="btn btn-dark green col-md-1">Cofnij</a>  
     </div>
+    
+    
+    
+    
+    
     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -72,24 +79,22 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
+                
                 <div class="modal-body">
                     <div class="card card-outline-secondary">
                         <div class="card-body">
                             <form method="post" action="{{route('profile.changePassword')}}" class="form" role="form" autocomplete="off">@csrf
                                 <div class="form-group">
-                                    <label for="inputPasswordOld">Obecne hasło</label>
-                                    <input type="password" class="form-control" name="old_password" id="inputPasswordOld" required="">
+                                    <input placeholder="Obecne hasło" type="password" class="form-control" name="old_password" id="inputPasswordOld" required="">
                                 </div>
                                 <div class="form-group">
-                                    <label for="inputPasswordNew">Nowe hasło</label>
-                                    <input type="password" class="form-control" name="new_password" id="inputPasswordNew" required="">
+                                    <input placeholder="Nowe hasło" type="password" class="form-control" name="new_password" id="inputPasswordNew" required="">
                                 </div>
                                 <div class="form-group">
-                                    <label for="inputPasswordNewVerify">Potwierdź hasło</label>
-                                    <input type="password" class="form-control" name="re_password" id="inputPasswordNewVerify" required="">
+                                    <input placeholder="Potwierdź hasło" type="password" class="form-control" name="re_password" id="inputPasswordNewVerify" required="">
                                 </div>
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-success btn-lg float-right">Zmień</button>
+                                    <button type="submit" class="btn btn-success btn-lg float-center">Zmień</button>
                                 </div>
                             </form>
                         </div>
@@ -100,7 +105,4 @@
         </div>
     </div>
     </div>
-
-
-
 @endsection

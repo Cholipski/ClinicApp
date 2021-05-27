@@ -15,6 +15,8 @@ mix.js('resources/js/app.js', 'public/js')
     .vue()
     .sass('resources/sass/app.scss', 'public/css');
 
-mix.css('resources/css/HomeStyle.css','public/css')
-mix.css('resources/css/admin.css','public/css')
+mix.css('resources/css/HomeStyle.css', 'public/css')
+mix.css('resources/css/admin.css', 'public/css')
+mix.css('resources/css/clock.css', 'public/css')
+mix.js('resources/js/clock.js', 'public/js')
 

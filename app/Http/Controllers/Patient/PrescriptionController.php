@@ -21,8 +21,9 @@ class PrescriptionController extends Controller
     {
         $prescriptions = Prescription::where('id_patient',auth()->user()->id)
             ->leftjoin('users','users.id','prescriptions.id_doctor')
-            ->select('prescriptions.id','prescriptions.invoice_date','prescriptions.access_code',
-                'prescriptions.barcode','prescriptions.implementation_date','users.first_name','users.last_name')
+            ->select('prescriptions.id as id','prescriptions.invoice_date as invoice_date','prescriptions.access_code as code',
+                'prescriptions.barcode','prescriptions.implementation_date as implementation_date',
+                'users.first_name as first_name','users.last_name as last_name')
             ->get();
         return view('patient.prescription',compact('prescriptions'));
     }

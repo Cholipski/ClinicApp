@@ -2,6 +2,15 @@
 
 @section('content')
 <div class="container">
+    <script type="text/javascript">window.setTimeout("document.getElementById('successMessage').style.display='none';", 2000); </script>
+   
+    @if(Session::has('message'))
+    <div id="successMessage">
+        <div class="alert alert-success">
+            {{Session::get('message')}}
+        </div>
+    </div>
+    @endif
     <div class="row">
         <div class="col-lg-4">
             <a class="patient-menu" href="{{route('profile.index')}}">
@@ -16,7 +25,7 @@
             </a>
         </div>
         <div class="col-lg-4">
-            <a class="patient-menu" href="">
+            <a class="patient-menu" href="{{route('history.index')}}">
                 <div class="card">
                     <div class="card-header">
                         <i class="fas fa-history main-icon"></i>

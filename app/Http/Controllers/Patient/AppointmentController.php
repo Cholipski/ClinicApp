@@ -48,7 +48,7 @@ class AppointmentController extends Controller
 
         $date = Appointment::where('id',$appointment_time->appointment_id)->get()->first();
 
-        if(Booking::where('date',$date->date)->get()->first() != null){
+        if(Booking::where('date',$date->date)->where('user_id',auth()->user()->id)->get()->first() != null){
             return redirect()->back()->with('errmessage','Nie można zarezerować dwóch terminów na ten sam dzień');
 
         }
@@ -63,7 +63,7 @@ class AppointmentController extends Controller
         ]);
 
         Time::where('id',$request->available_time)->update(['status'=>1]);
-        return redirect()->back()->with('message','Pomyślnie zarezerwowano wizytę');
+        return redirect('/')->with('message','Pomyślnie zarezerwowano wizytę');
 
     }
 
@@ -78,7 +78,7 @@ class AppointmentController extends Controller
         $dates = Appointment::where('user_id',$id)
             ->orderby('date','asc')
             ->whereDate('date','>=',Carbon::today()->toDateString())
-            ->get();
+            ->simplePaginate(10);
         $doctor = User::where('id',$id)->get()->first();
         return view('patient.availableAppointment',compact('dates','id','doctor'));
 
