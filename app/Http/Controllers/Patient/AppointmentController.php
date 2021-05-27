@@ -63,7 +63,7 @@ class AppointmentController extends Controller
         ]);
 
         Time::where('id',$request->available_time)->update(['status'=>1]);
-        return redirect()->back()->with('message','Pomyślnie zarezerwowano wizytę');
+        return redirect('/')->with('message','Pomyślnie zarezerwowano wizytę');
 
     }
 
