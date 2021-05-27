@@ -2,12 +2,15 @@
     font-size: 7em;
     text-align: center;
 }
+
 .card-header {
     text-align: center;
 }
+
 .card-body {
     text-align: center;
 }
+
 .patient-menu {
     text-decoration: none;
     color: black;
@@ -16,12 +19,13 @@
 .form-group {
     width: 100% !important;
 }
+
 textarea {
     width: 100% !important;
 }
 
-.radio_appointment {
-}
+.radio_appointment {}
+
 .btn_appointment {
     width: 100px;
 }
@@ -30,6 +34,7 @@ textarea {
     font-size: 25px !important;
     color: #5a5a5a;
 }
+
 /*----------------- */
 .btn-login {
     width: 150px;
@@ -123,6 +128,7 @@ textarea {
     height: 120px;
     border-radius: 50%;
 }
+
 .btn-available-date {
     color: black;
     background: black;
@@ -146,6 +152,7 @@ textarea {
     box-shadow: 0 0 1em rgb(170, 178, 180);
     font-size: 16px;
 }
+
 .form-down {
     font-size: 18px;
 }
@@ -155,6 +162,7 @@ textarea {
     font-size: 42px;
     text-align: center;
 }
+
 .heading-time {
     font-size: 28px;
     text-align: center;
