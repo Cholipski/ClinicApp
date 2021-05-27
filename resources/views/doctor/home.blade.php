@@ -9,8 +9,12 @@
     @foreach($patients as $patient)
         <br>
         {{ $patient->name }}<br>
+        {{ $patient->last_name }}<br>
         {{ $patient->time }}<br>
     @endforeach
 
-    pierwszy w kolejce = {{$next->name}}{{$next->last_name}}{{$next->time}}
+    @if(isset($next))
+        pierwszy w kolejce = {{$next->last_name}}{{$next->time}}
+    @endif
 @endsection
+

@@ -29,7 +29,7 @@ class HomeController extends Controller
 
         $patient = Booking::where('date',$date)
             ->where('doctor_id',$doctor)
-            ->where('status',0)
+            ->where('status',1)
 
             ->leftJoin('users','users.id' ,'=' ,'bookings.user_id')
             ->select('users.first_name as name', 'users.last_name as last_name',
