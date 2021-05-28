@@ -3,12 +3,14 @@
 
 @section('content')
     @if (Session::has('message'))
-        <div class="alert alert-success">
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
             {{ Session::get('message') }}
         </div>
     @endif
     @if (Session::has('errmessage'))
-        <div class="alert alert-danger">
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
             {{ Session::get('errmessage') }}
         </div>
     @endif
@@ -39,68 +41,78 @@
             </div>
         </div>
     </div>
-    <div class="container rounded bg-white mt-5 mb-5">
+    <div class="content">
         <form method="post" action="{{ route('doctor.update', $user->id) }}">
             @csrf
             {{ method_field('PUT') }}
             <div class="row">
-                <div class="col-md-3 border-right">
-                    <div class="d-flex flex-column align-items-center text-center p-3 py-5">
-                        <img class="rounded-circle mt-50" width="150px" height="150px"
-                            src="{{ asset('images') }}/{{ $user->image }}">
-                        <h5 class="font-weight-bold mt-10">{{ $user->first_name }}
-                            {{ $user->last_name }}</h5>
-                        <span class="text-black-50">{{ $user->email }}</span>
-                        <span class="text-black-50">{{ $user->specialist }}</span>
-                    </div>
-                </div>
-                <div class="col-md-9 border-right">
-                    <div class="p-3 py-5">
-                        <div class="d-flex justify-content-between align-items-center mb-3">
-                            <h4 class="text-right">Edycja danych lekarza</h4>
+                <div class="col-lg-1 d-none d-lg-block" style="min-height: 600px"></div>
+                <div class="col-lg-3" style="min-height: 600px">
+                    <div class="card" style="min-height: 600px">
+                        <div class="card-header justify-content-center">
+                            <h3>Dane lekarza</h3>
                         </div>
-                        <div class="row mt-2">
-                            <div class="col-md-6"><label class="labels">Imię</label><input type="text" name="first_name"
-                                    class="form-control" value="{{ $user->first_name }}"></div>
-                            <div class="col-md-6"><label class="labels">Nazwisko</label><input type="text" name="last_name"
-                                    class="form-control" value="{{ $user->last_name }}"></div>
-                        </div>
-                        <div class="row mt-2">
-                            <div class="col-md-6">
-                                <div class="row-md-12">
-                                    <label class="labels">Wykształcenie</label><input type="text" name="education"
-                                        class="form-control" value="{{ $user->education }}">
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12"><label class="labels">Numer telefonu</label><input type="text"
-                                            name="phone_number" class="form-control" value="{{ $user->phone_number }}">
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12"><label class="labels">Adres zamieszkania</label><input
-                                            type="text" name="address" class="form-control" value="{{ $user->address }}">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-6">
-                                <span>O lekarzu</span>
-                                <div class="d-flex justify-content-between align-items-center experience">
-                                    <textarea class="form-control" name="description"
-                                        style="height:160px;">{{ $user->description }}</textarea>
-                                </div>
+                        <div class="card-body d-flex justify-content-center">
+                            <div class="d-flex flex-column align-items-center text-center">
+                                <img class="rounded-circle mt-50" width="150px" height="150px"
+                                    src="{{ asset('images') }}/{{ $user->image }}">
+                                <h5 class="font-weight-bold mt-10">{{ $user->first_name }}
+                                    {{ $user->last_name }}</h5>
+                                <span class="text-black-50">{{ $user->education }}</span>
+                                <span class="text-black-50">{{ $user->phone_number }}</span>
+                                <span class="text-black-50">{{ $user->address }}</span>
+                                <span class="text-black-50">{{ $user->specialist }}</span>
                             </div>
                         </div>
-                        <div class="mt-25 text-center"><button class="btn btn-dark profile-button" type="submit">Zapisz
-                                zmiany</button></div>
                     </div>
                 </div>
 
-
+                <div class="col-lg-7" style="min-height: 600px">
+                    <div class="card text-center" style="min-height: 600px">
+                        <div class="card-header justify-content-center">
+                            <h3>Edycja danych lekarza</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="firstName">Imię</label>
+                                    <input type="text" class="form-control" name="first_name" id="firstName"
+                                        value="{{ $user->first_name }}">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="lastName">Naziwsko</label>
+                                    <input type="text" class="form-control" name="last_name" id="lastName"
+                                        value="{{ $user->last_name }}">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="edu">Wykształcenie</label>
+                                    <input type="text" class="form-control" name="education" id="edu"
+                                        value="{{ $user->education }}">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="phoneNumber">Numer telefonu</label>
+                                    <input type="text" class="form-control" name="phone_number" id="phoneNumber"
+                                        value="{{ $user->phone_number }}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="cityAdress">Adres zamieszkania</label>
+                                <input type="text" class="form-control" name="address" id="cityAdress"
+                                    value="{{ $user->address }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="about">O lekarzu</label>
+                                <textarea class="form-control" name="description" id="about"
+                                    style="height:160px;">{{ $user->description }}</textarea>
+                            </div>
+                            <button type="submit" class="btn btn-secondary">Zapisz zmiany</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </form>
     </div>
-
-
 
 @endsection

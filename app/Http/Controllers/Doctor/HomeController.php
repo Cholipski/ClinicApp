@@ -22,9 +22,9 @@ class HomeController extends Controller
             ->where('doctor_id',$doctor)
             ->where('status',1)
             ->count();
-        $bookings_0 = Booking::where('date',$date)
+        $bookings_2 = Booking::where('date',$date)
             ->where('doctor_id',$doctor)
-            ->where('status',0)
+            ->where('status',2)
             ->count();
 
         $patient = Booking::where('date',$date)
@@ -46,7 +46,7 @@ class HomeController extends Controller
 
         $total = User::where('role_id',3)
             ->count();
-        return view('doctor.home', compact('today','total', 'doc','bookings_1','bookings_0','patients', 'next'));
+        return view('doctor.home', compact('today','total', 'doc','bookings_1','bookings_2','patients', 'next'));
     }
 
     public function amount()
