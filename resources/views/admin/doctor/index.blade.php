@@ -72,12 +72,7 @@
                                                 <button onclick="location.href='{{ route('doctor.edit', $user->id) }}';"
                                                     style="background: none;border:none;"><i
                                                         class="ik ik-edit-2"></i></button>
-                                                <button href="#" data-toggle="modal" data-id="{{ $user->id }}"
-                                                    data-target="#deleteDoctorModal" disabled class="btnDeleteDoctor"
-                                                    style="background: none;border:none;"><i
-                                                        class="ik ik-trash-2"></i></button>
                                             </div>
-                                            {{-- href="{{ route('doctor.edit', $user->id) }}" --}}
                                         </td>
                                     </tr>
                                 @endforeach
@@ -86,33 +81,6 @@
                             @endif
                         </tbody>
                     </table>
-                </div>
-            </div>
-        </div>
-
-        <div class="modal fade" id="deleteDoctorModal" tabindex="-1" role="dialog" aria-labelledby="deleteDoctor"
-            aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Usuwanie lekarza</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        Czy na pewno chcesz usunąć lekarza?
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-dark" data-dismiss="modal">Zamknij</button>
-                        <form method="post" action="{{ route('admin.doctor.delete') }}">
-                            @csrf
-                            {{ method_field('DELETE') }}
-                            <input type="hidden" hidden id="hiddenDoctorId" name="hiddenDoctorId">
-                            <button type="submit" class="btn btn-danger">Usuń lekarza</button>
-                        </form>
-
-                    </div>
                 </div>
             </div>
         </div>
@@ -152,12 +120,6 @@
     <script>
         $(document).ready(function() {
             $('.btnShowDoctor').attr('disabled', false);
-            $('.btnDeleteDoctor').attr('disabled', false);
-
-            $('#deleteDoctorModal').on('show.bs.modal', function(e) {
-                const doctorId = $(e.relatedTarget).data('id');
-                $(".modal-footer #hiddenDoctorId").val(doctorId);
-            });
 
             $('#showDoctorModal').on('show.bs.modal', function(e) {
                 const doctor = $(e.relatedTarget).data('data');
