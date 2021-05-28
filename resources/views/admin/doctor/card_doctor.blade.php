@@ -15,82 +15,83 @@
             </div>
         </div>
     </div>
-    <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-6">
-                    <form action="{{route('card_doctor.check')}}" method="post">@csrf
-                        <div class="card">
-                            <div class="card-header">
-                                Wybierz lekarza
-                            </div>
-                            <div class="card-body">
-                                <select class="form-control @error('role_id') is-invalid @enderror" name="doctor_id">
-                                    <option value="">Wybierz lekarza</option>
-                                    @foreach(App\Models\User::where('role_id','=','1')->get() as $doctor)
-                                        <option value="{{$doctor->id}}">{{$doctor->first_name}} {{$doctor->last_name}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Pokaż wizyty</button>
+
+    <div class="content">
+        <div class="row clearfix">
+            <div class="col-lg-3">
+                <form action="{{ route('card_doctor.check') }}" method="post">@csrf
+                    <div class="card" style="height: 275px;">
+                        <div class="card-header">
+                            Wybierz lekarza
                         </div>
-                    </form>
-                </div>
-                <div class="col-lg-6">
-                    @if(isset($doctor_selected))
-                    <div class="card">
+                        <div class="card-body d-flex-column">
+                            <select class="form-control @error('role_id') is-invalid @enderror" name="doctor_id">
+                                <option value="">Wybierz lekarza</option>
+                                @foreach (App\Models\User::where('role_id', '=', '1')->get() as $doctor)
+                                    <option value="{{ $doctor->id }}">{{ $doctor->first_name }}
+                                        {{ $doctor->last_name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            <button type="submit" class="btn btn-secondary" style="margin-top: 1rem">Pokaż wizyty</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="col-lg-6">
+                @if (isset($doctor_selected))
+                    <div class="card" style="height: 275px; max-height:275px">
                         <div class="card-header">
                             Dane lekarza
                         </div>
+                        <div class="card-body d-flex justify-content-around">
+                            <div>
+                                <h3>{{ $doctor_selected->first_name }} {{ $doctor_selected->last_name }}</h3>
+                                <br>
+                                <p><b>Wykształcenie: </b>{{ $doctor_selected->education }}</p>
+                                <p><b>Numer telefonu: </b>{{ $doctor_selected->phone_number }}</p>
+                                <p><b>Adres zamieszkania: </b>{{ $doctor_selected->address }}</p>
+                            </div>
+
+                            <div class="">
+                                <img class="rounded-circle" width="150px" height="150px"
+                                    src="{{ asset('images') }}/{{ $doctor_selected->image }}">
+                            </div>
+                        </div>
+                    </div>
+                @endif
+            </div>
+
+            <div class="col-lg-3">
+                @if (isset($doctor_selected))
+                    <div class="card" style="height: 275px; max-height:275px">
+                        <div class="card-header">
+                            Opis
+                        </div>
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-md-3 border-right">
-                                    <div class="d-flex flex-column align-items-center text-center p-3">
-                                        <img class="rounded-circle" width="150px" height="150px" src="{{ asset('images') }}/{{ $doctor_selected->image}}">
-                                    </div>
-                                </div>
-                                <div class="col-md-9 border-right">
-                                    <div class="py-3">
-                                        <div class="row mt-2">
-                                            <div class="col-md-6">
-                                                <div class="col-md-12 py-1">
-                                                    <b>Imię: </b>{{ $doctor_selected->first_name }}
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <b>Nazwisko: </b>{{ $doctor_selected->last_name }}
-                                                </div>
-                                                <div class="col-md-12 py-1">
-                                                    <b>Wykształcenie: </b>{{ $doctor_selected->education }}
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <b>Numer telefonu: </b>{{$doctor_selected->phone_number}}
-                                                </div>
-                                                <div class="col-md-12 py-1">
-                                                    <b>Adres zamieszkania: </b><br>
-                                                    {{ $doctor_selected->address }}
-                                                </div>
-                                            </div>
-                
-                                            <div class="col-md-6">
-                                                <div class="col-md-12">
-                                                    <b>O lekarzu</b>
-                                                    <div class="d-flex justify-content-between align-items-center experience">
-                                                        {{ $doctor_selected->description }}
-                                                    </div>
-                                                </div>
-                                            </div>
+
+                                <div class="col-md-6">
+                                    <div class="col-md-12">
+                                        <b>O lekarzu</b>
+                                        <div class="d-flex justify-content-between align-items-center experience">
+                                            {{ $doctor_selected->description }}
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    @endif
-                </div>
+                @endif
             </div>
-        <div class="row">
-            <div class="col-lg-6">
-                <div class="card">
-                @if(isset($doctor_selected))
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="card" style="min-height: 275px">
+                @if (isset($doctor_selected))
                     <div class="card-header">
                         Lista pacjentów
                     </div>
@@ -103,23 +104,23 @@
                                 <th>Telefon</th>
                             </thead>
                             <tbody>
-                                @foreach($patients as $patient)
+                                @foreach ($patients as $patient)
                                     <tr>
-                                        <td>{{$patient->first_name}} {{$patient->last_name}}</td>
-                                        <td>{{$patient->email}}</td>
-                                        <td>{{$patient->address}}</td>
-                                        <td>{{$patient->phone_number}}</td>
+                                        <td>{{ $patient->first_name }} {{ $patient->last_name }}</td>
+                                        <td>{{ $patient->email }}</td>
+                                        <td>{{ $patient->address }}</td>
+                                        <td>{{ $patient->phone_number }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
                         </table>
                     </div>
                 @endif
-                </div>
             </div>
-            <div class="col-lg-6">
-                <div class="card">
-                    @if(isset($doctor_selected))
+        </div>
+        <div class="col-lg-6">
+            <div class="card" style="min-height: 285px">
+                @if (isset($doctor_selected))
                     <div class="card-header">
                         Ostatnie wizyty
                     </div>
@@ -132,26 +133,27 @@
                                 <th>Objawy</th>
                             </thead>
                             <tbody>
-                                @foreach($appoinments as $appoinment)
+                                @foreach ($appoinments as $appoinment)
                                     <tr>
-                                        <td>{{$appoinment->date}}</td>
-                                        <td>{{$appoinment->time}}</td>
+                                        <td>{{ $appoinment->date }}</td>
+                                        <td>{{ $appoinment->time }}</td>
                                         <td>
-                                            {{App\Models\User::where('id', $appoinment->user_id)->value('first_name')}}
-                                            {{App\Models\User::where('id', $appoinment->user_id)->value('last_name')}}
+                                            {{ App\Models\User::where('id', $appoinment->user_id)->value('first_name') }}
+                                            {{ App\Models\User::where('id', $appoinment->user_id)->value('last_name') }}
                                         </td>
-                                        <td>{{$appoinment->symptoms}}</td>
+                                        <td>{{ $appoinment->symptoms }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
                         </table>
                     </div>
-                    @endif
-                </div>
+                @endif
             </div>
-            <div class="col-lg-12">
-                <div class="card">
-                    @if(isset($doctor_selected))
+        </div>
+
+        <div class="col-lg-12">
+            <div class="card">
+                @if (isset($doctor_selected))
                     <div class="card-header">
                         Przypisane recepty dla pacjentów
                     </div>
@@ -165,26 +167,25 @@
                                 <th>Kod kreskowy</th>
                             </thead>
                             <tbody>
-                                @foreach($prescriptions as $prescription)
+                                @foreach ($prescriptions as $prescription)
                                     <tr>
                                         <td>
-                                            {{App\Models\User::where('id', $prescription->id_patient)->value('first_name')}}
-                                            {{App\Models\User::where('id', $prescription->id_patient)->value('last_name')}}
+                                            {{ App\Models\User::where('id', $prescription->id_patient)->value('first_name') }}
+                                            {{ App\Models\User::where('id', $prescription->id_patient)->value('last_name') }}
                                         </td>
-                                        <td>{{$prescription->invoice_date}}</td>
-                                        <td>{{$prescription->implementation_date}}</td>
-                                        <td>{{$prescription->access_code}}</td>
-                                        <td>{{$prescription->barcode}}</td>
+                                        <td>{{ $prescription->invoice_date }}</td>
+                                        <td>{{ $prescription->implementation_date }}</td>
+                                        <td>{{ $prescription->access_code }}</td>
+                                        <td>{{ $prescription->barcode }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
                         </table>
                     </div>
-                    @endif
-                </div>
+                @endif
             </div>
         </div>
     </div>
-    
+
 
 @endsection
