@@ -4,6 +4,11 @@ namespace App\Http\Controllers\Doctor;
 
 use App\Http\Controllers\Controller;
 use App\Models\Booking;
+use App\Models\Medicament;
+use Illuminate\Support\Str;
+use App\Models\Prescription;
+use App\Models\Recommendation;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -21,15 +26,13 @@ class PatientTodayController extends Controller
         $date = date('Y-m-d');
         $patients = Booking::where('date',$date)
             ->where('doctor_id',$doctor)
-
+            ->where('status',1)
             ->leftJoin('users','users.id' ,'=' ,'bookings.user_id')
-            ->select('users.first_name as name', 'users.last_name as last_name',
+            ->select('bookings.id as id','users.first_name as name', 'users.last_name as last_name',
                 'bookings.date','bookings.time', 'bookings.symptoms', 'bookings.status' )
             ->get();
-//        return view('doctor.list', compact('users'));
         return view('doctor.patientToday',compact('patients'));
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -95,4 +98,80 @@ class PatientTodayController extends Controller
     {
         //
     }
+
+    public function appointment($id)
+    {
+
+        $patients = Booking::where('bookings.id',$id)
+            ->where('date',date('Y-m-d'))
+            ->leftJoin('users','users.id' ,'=' ,'bookings.user_id')
+            ->select('bookings.id as id','users.first_name', 'users.last_name', 'users.address', 'users.phone_number', 'users.email',
+                'bookings.date','bookings.time', 'bookings.symptoms', 'bookings.user_id')
+            ->first();
+
+        $appointments = Booking::where('user_id', $patients->user_id)->get();
+
+        $prescriptions = Prescription::where('id_patient', $patients->user_id)->get();
+
+        return view('doctor.appointment', compact('patients', 'appointments', 'prescriptions'));
+    }
+
+    public function prescription(Request $request)
+    {
+        $data = $request->all();
+
+        $id_app=$data['id_app'];
+        $rand=rand(100000000,999999999);
+        $qr= Str::random(10);
+
+        $booking = Booking::where('id',$id_app)->first();
+
+
+        $date = date('Y-m-d');
+        if($data['name1']!=null &&  $data['dosage1']!=null &&  $data['payment1']!=null &&  $data['count1']!=null)
+        {
+            Prescription::create([
+                'id_patient' => $booking->user_id,
+                'id_doctor' => $booking->doctor_id,
+                'invoice_date' => $date,
+                'access_code' => $rand,
+                'barcode' => $qr,
+                'implementation_date' => $date,
+                'appointment_id' =>$id_app
+            ]);
+
+            $prescript_id = Prescription::all()->last();
+
+            for($i=1;$i<6;$i++)
+            {
+                if($data['name'.$i]!=null &&  $data['dosage'.$i]!=null &&  $data['payment'.$i]!=null &&  $data['count'.$i]!=null)
+                {
+                    Medicament::create([
+                        'id_prescription'=>$prescript_id->id,
+                        'name' => $data['name'.$i],
+                        'dosage' => $data['dosage'.$i],
+                        'payment' => $data['payment'.$i],
+                        'count' => $data['count'.$i],
+                    ]);
+                }
+            }
+        }
+
+
+
+
+        Recommendation::create([
+            'id_patient' => $booking->user_id,
+            'id_doctor' => $booking->doctor_id,
+            'date' => $date,
+            'appointment_id' =>$id_app,
+            'content'=>$data['zalecenia'],
+        ]);
+
+        $booking->status = 2;
+        $booking->save();
+
+        return redirect('doctor/patient_today')->with('message','Pomyślnie zakończono wizytę');
+    }
+
 }

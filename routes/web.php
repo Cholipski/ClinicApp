@@ -17,10 +17,10 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 Auth::routes(['verify' => true]);
 
-Route::resource('/', 'HomeController')->middleware(['auth','verified']);
+Route::resource('/', 'HomeController')->middleware('auth');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::group(['middleware'=>['auth','Administrator','verified']],function() {
+Route::group(['middleware'=>['auth','Administrator']],function() {
     Route::get('/admin/home','Admin\DoctorController@home')->name('admin.home');
     Route::resource('admin/doctor', 'Admin\DoctorController');
     Route::resource('admin/appointment', 'Admin\AppointmentController');
@@ -45,24 +45,28 @@ Route::group(['middleware'=>['auth','Administrator','verified']],function() {
 });
 
 
-Route::group(['middleware' => ['auth', 'Doctor','verified']], function () {
+Route::group(['middleware' => ['auth', 'Doctor']], function () {
     Route::resource('doctor/home', 'Doctor\HomeController');
     Route::resource('doctor/patient', 'Doctor\PatientController');
     Route::resource('doctor/patient_today', 'Doctor\PatientTodayController');
+    Route::get('doctor/patient_today/appointment/{id}', 'Doctor\PatientTodayController@appointment')->name('doctor.appointment');
+    Route::post('doctor/patient_today/prescription', 'Doctor\PatientTodayController@prescription')->name('doctor.prescription');
+
+
 });
 
-Route::group(['middleware' => ['auth', 'Patient','verified']], function () {
-	Route::resource('patient/new_appointment', 'Patient\AppointmentController');
-	Route::resource('patient/cancel_appointment', 'Patient\CancelAppointmentController');
-	Route::resource('patient/profile', 'Patient\ProfileController');
-	Route::resource('patient/history', 'Patient\HistoryController');
+Route::group(['middleware' => ['auth', 'Patient']], function () {
+    Route::resource('patient/new_appointment', 'Patient\AppointmentController');
+    Route::resource('patient/cancel_appointment', 'Patient\CancelAppointmentController');
+    Route::resource('patient/profile', 'Patient\ProfileController');
+    Route::resource('patient/history', 'Patient\HistoryController');
 
     Route::resource('patient/prescription', 'Patient\PrescriptionController');
 
-	Route::post('patient/new_appointment/doctors', 'Patient\AppointmentController@doctorlist')->name('book.doctorlist');
-	Route::post('profile/', 'Patient\ProfileController@changePassword')->name('profile.changePassword');
+    Route::post('patient/new_appointment/doctors', 'Patient\AppointmentController@doctorlist')->name('book.doctorlist');
+    Route::post('profile/', 'Patient\ProfileController@changePassword')->name('profile.changePassword');
 
-	Route::get('patient/new_appointment/{doctor}/{time_id}', 'Patient\AppointmentController@showTimes')->name('book.showTimes');
+    Route::get('patient/new_appointment/{doctor}/{time_id}', 'Patient\AppointmentController@showTimes')->name('book.showTimes');
 
 
 });
