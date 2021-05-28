@@ -11,126 +11,138 @@ use Illuminate\Support\Facades\Auth;
 class HomeController extends Controller
 {
 
-    public function index()
-    {
-        $doctor = Auth::user()->getAuthIdentifier();
-        $date = date('Y-m-d');
-        $doc = User::where('id',$doctor)
-            ->get();
+	public function index()
+	{
+		$doctor = Auth::user()->getAuthIdentifier();
+		$date = date('Y-m-d');
+		$doc = User::where('id', $doctor)
+			->get()->first();
 
-        $bookings_1 = Booking::where('date',$date)
-            ->where('doctor_id',$doctor)
-            ->where('status',1)
-            ->count();
-        $bookings_2 = Booking::where('date',$date)
-            ->where('doctor_id',$doctor)
-            ->where('status',2)
-            ->count();
+		$bookings_1 = Booking::where('date', $date)
+			->where('doctor_id', $doctor)
+			->where('status', 1)
+			->count();
+		$bookings_2 = Booking::where('date', $date)
+			->where('doctor_id', $doctor)
+			->where('status', 2)
+			->count();
 
-        $patient = Booking::where('date',$date)
-            ->where('doctor_id',$doctor)
-            ->where('status',1)
+		$patient = Booking::where('date', $date)
+			->where('doctor_id', $doctor)
+			->where('status', 1)
 
-            ->leftJoin('users','users.id' ,'=' ,'bookings.user_id')
-            ->select('users.first_name as name', 'users.last_name as last_name',
-                'bookings.date','bookings.time', 'bookings.symptoms', 'bookings.status' )
-            ->get();
+			->leftJoin('users', 'users.id', '=', 'bookings.user_id')
+			->select(
+				'users.first_name as name',
+				'users.last_name as last_name',
+				'bookings.date',
+				'bookings.time',
+				'bookings.symptoms',
+				'bookings.status'
+			)
+			->get();
 
-        $patients = $patient->sortBy('time');
+		$patients = $patient->sortBy('time');
 
-        $next = $patients->first();
+		$next = $patients->first();
 
-        $today = Booking::where('date',$date)
-            ->where('doctor_id',$doctor)
-            ->count();
+		$today = Booking::where('date', $date)
+			->where('doctor_id', $doctor)
+			->count();
 
-        $total = User::where('role_id',3)
-            ->count();
-        return view('doctor.home', compact('today','total', 'doc','bookings_1','bookings_2','patients', 'next'));
-    }
+		$total = User::where('role_id', 3)
+			->count();
+		return view('doctor.home', compact('today', 'total', 'doc', 'bookings_1', 'bookings_2', 'patients', 'next'));
+	}
 
-    public function amount()
-    {
-        $doctor = Auth::user()->getAuthIdentifier();
-        $date = date('Y-m-d');
-        $amount = Booking::where('date',$date)
-            ->where('doctor_id',$doctor)
-            ->count();
-        dd($amount);
-        return view('doctor.home', compact('amount'));
-    }
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+	public function amount()
+	{
+		$doctor = Auth::user()->getAuthIdentifier();
+		$date = date('Y-m-d');
+		$amount = Booking::where('date', $date)
+			->where('doctor_id', $doctor)
+			->count();
+		dd($amount);
+		return view('doctor.home', compact('amount'));
+	}
+	/**
+	 * Show the form for creating a new resource.
+	 *
+	 * @return \Illuminate\Http\Response
+	 */
+	public function create()
+	{
+		//
+	}
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+	/**
+	 * Store a newly created resource in storage.
+	 *
+	 * @param  \Illuminate\Http\Request  $request
+	 * @return \Illuminate\Http\Response
+	 */
+	public function store(Request $request)
+	{
+		//
+	}
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Request $request)
-    {
-        $doctor = Auth::user()->getAuthIdentifier();
-        $date = date('Y-m-d');
-        $users = Booking::where('date',$date)
-            ->where('doctor_id',$doctor)
-            ->where('status',1)
-            ->leftJoin('users','users.id' ,'=' ,'bookings.user_id')
-            ->select('users.first_name as name', 'users.last_name as last_name',
-                'bookings.date','bookings.time', 'bookings.symptoms', 'bookings.status' )
-            ->get();
-        return view('doctor.list', compact('users'));
-    }
+	/**
+	 * Display the specified resource.
+	 *
+	 * @param  int  $id
+	 * @return \Illuminate\Http\Response
+	 */
+	public function show(Request $request)
+	{
+		$doctor = Auth::user()->getAuthIdentifier();
+		$date = date('Y-m-d');
+		$users = Booking::where('date', $date)
+			->where('doctor_id', $doctor)
+			->where('status', 1)
+			->leftJoin('users', 'users.id', '=', 'bookings.user_id')
+			->select(
+				'users.first_name as name',
+				'users.last_name as last_name',
+				'bookings.date',
+				'bookings.time',
+				'bookings.symptoms',
+				'bookings.status'
+			)
+			->get();
+		return view('doctor.list', compact('users'));
+	}
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+	/**
+	 * Show the form for editing the specified resource.
+	 *
+	 * @param  int  $id
+	 * @return \Illuminate\Http\Response
+	 */
+	public function edit($id)
+	{
+		//
+	}
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+	/**
+	 * Update the specified resource in storage.
+	 *
+	 * @param  \Illuminate\Http\Request  $request
+	 * @param  int  $id
+	 * @return \Illuminate\Http\Response
+	 */
+	public function update(Request $request, $id)
+	{
+		//
+	}
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
+	/**
+	 * Remove the specified resource from storage.
+	 *
+	 * @param  int  $id
+	 * @return \Illuminate\Http\Response
+	 */
+	public function destroy($id)
+	{
+		//
+	}
 }

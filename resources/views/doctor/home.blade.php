@@ -74,14 +74,14 @@
                         </div>
                         @if (isset($next))
                             <div class="card-body">
-                                <h3 style="margin-top: 4rem">Paweł {{ $next->last_name }}</h3>
+                                <h3 style="margin-top: 4rem">{{ $next->first_name }} {{ $next->last_name }}</h3>
                                 <p class="card-text" style="font-size: 2rem; font-weight: 400">{{ $next->time }}</p>
                                 <a href="#" class="btn btn-secondary w-20 h-10" style="margin-top: 3rem;">Karta
                                     pacjenta</a>
                             </div>
                         @else
                             <div class="card-body">
-                                <h3 style="margin-top: 6rem">Nie ma pacjęta w kolejce</h3>
+                                <h3 style="margin-top: 6rem">Nie ma pacjenta w kolejce</h3>
                             </div>
                         @endif
                     </div>
@@ -117,9 +117,9 @@
                                         <div class="card-body text-center border">
                                             <h5 class="card-title font-weight-bold border-bottom p-3">
                                                 {{ $patient->name }} {{ $patient->last_name }}</h5>
-                                            <p class="card-text">Lekarz: Paweł Bronk
+                                            <p class="card-text">Lekarz: {{ $doc->first_name }} {{ $doc->last_name }}
                                             </p>
-                                            <p class="card-text">Przjęcie pacjenta o godzinie: {{ $patient->time }}
+                                            <p class="card-text">Przyjęcie pacjenta o godzinie: {{ $patient->time }}
                                             </p>
                                         </div>
                                     </div>
