@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 use App\Models\Booking;
 use App\Models\Appointment;
 use App\Models\Time;
+use App\Models\User;
+use App\Mail\RejectAppointmentBooked;
+use App\Mail\ConfirmAppointmentBooked;
+use Illuminate\Support\Facades\Mail;
 
 class BookingController extends Controller
 {
@@ -97,7 +101,18 @@ class BookingController extends Controller
 
         $time->save();
         $booking->save();
+        $doctor = User::where('id',$booking->doctor_id)->get()->first();
+        $patient = User::where('id',$booking->user_id)->get()->first();
 
+        $details = [
+            'name' => $patient->first_name,
+            'date' => $booking->date,
+            'hours' => $booking->time,
+            'doctor' => $doctor->first_name." ".$doctor->last_name
+        ];
+
+        Mail::to($patient->email)
+            ->send(new RejectAppointmentBooked($details));
         return redirect()->back()->with('message','Wizyta została odrzucona');
     }
     public function accepted_booked($id)
@@ -107,7 +122,18 @@ class BookingController extends Controller
         $booking->status = 1;
 
         $booking->save();
+        $doctor = User::where('id',$booking->doctor_id)->get()->first();
+        $patient = User::where('id',$booking->user_id)->get()->first();
 
+        $details = [
+            'name' => $patient->first_name,
+            'date' => $booking->date,
+            'hours' => $booking->time,
+            'doctor' => $doctor->first_name." ".$doctor->last_name
+        ];
+
+        Mail::to($patient->email)
+            ->send(new ConfirmAppointmentBooked($details));
         return redirect()->back()->with('message','Wizyta została potwierdzona');
     }
 }

@@ -105,11 +105,11 @@
                                 @enderror
                             </div>
                             <div class="col-lg-6">
-                                <label for="address">Adres</label>
-                                <input type="text" name="address"
-                                    class="form-control @error('address') is-invalid @enderror" placeholder="Adres lekarza"
-                                    value="{{ old('address') }}">
-                                @error('address')
+                                <label for="address">Pokój lekarza</label>
+                                <input type="text" name="room"
+                                    class="form-control @error('room') is-invalid @enderror" placeholder="Pokój lekarza"
+                                    value="{{ old('room') }}">
+                                @error('room')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -172,13 +172,20 @@
                         </div>
                         <div class="row mt-15">
                             <div class="col-lg-6">
-                                <div class="custom-file">
+                                <div class="custom-file @error('image') is-invalid @enderror">
                                     <label for="image">Dodaj zdjęcie</label>
                                     <input type="file" name="image" class="file-upload-default" />
+                                    @error('image')
+                                    <span class="invalid-feedback" style="display: flex;" role="alert">
+                                        <strong>Zdjęcie jest wymagane</strong>
+                                    </span>
+                                    @enderror
                                 </div>
                             </div>
+
                         </div>
-                        <div class="form-group">
+
+                        <div class="form-group" style="margin-top: 20px;">
                             <label for="description mt-5">O lekarzu</label>
                             <textarea class="form-control @error('description') is-invalid @enderror" name="description"
                                 id="description" rows="4">
