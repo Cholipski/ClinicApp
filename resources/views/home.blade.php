@@ -75,7 +75,7 @@
             </a>
         </div>
         <div class="col-lg-4">
-            <a class="patient-menu" href="">
+            <a class="patient-menu" href="{{route('recommendation.index')}}">
                 <div class="card">
                     <div class="card-header">
                         <i class="fas fa-thumbs-up main-icon"></i>
