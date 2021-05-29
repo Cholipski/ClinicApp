@@ -72,7 +72,7 @@
                     <div class="row text-center mt-2">
                         <div class="col-lg-12">
                             <div class="col-lg-12">
-                                Nazwa: {{ $medicament->name }}
+                                <b>Nazwa:</b> {{ $medicament->name }}
                             </div>
                             <div class="col-lg-12">
                                 <b>Ilość opakowań:</b> {{ $medicament->count }}
@@ -81,7 +81,7 @@
                                 <b>Dawkowanie:</b> {{ $medicament->dosage }}
                             </div>
                             <div class="col-lg-12">
-                                Odpłatność: {{ $medicament->payment }} %
+                                <b>Odpłatność:</b> {{ $medicament->payment }} %
                             </div>
                         </div>
                     </div>

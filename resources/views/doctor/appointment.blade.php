@@ -132,7 +132,7 @@
 
                                                         <button data-toggle="modal" data-data="{{ $prescription }}"
                                                             data-target="#showPrescriptionModal{{ $prescription->id }}"
-                                                            disabled class=" btn btn-dark btnShowPrescription">Pokaż
+                                                            class="btn btn-dark btnShowPrescription">Pokaż
                                                             receptę</button>
                                                     </td>
                                                 </tr>
@@ -308,15 +308,3 @@
 
 
 @endsection
-@push('scripts')
-    <script>
-        $(document).ready(function() {
-            $('.btnShowPrescription').attr('disabled', false);
-
-            $('#showPrescription').on('show.bs.modal', function(e) {
-
-            });
-        });
-
-    </script>
-@endpush
