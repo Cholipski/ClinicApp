@@ -119,17 +119,24 @@
                                 <table class="table">
                                     <thead>
                                         <th>Wystawiono</th>
-                                        <th>Data realizacji</th>
                                         <th>Kod dostępu</th>
+                                        <th>Akcje</th>
                                     </thead>
                                     <tbody>
                                         @if ($prescriptions->count() > 0)
                                             @foreach ($prescriptions as $prescription)
                                                 <tr>
                                                     <td>{{ $prescription->invoice_date }}</td>
-                                                    <td>{{ $prescription->implementation_date }}</td>
                                                     <td>{{ $prescription->access_code }}</td>
+                                                    <td>
+
+                                                        <button data-toggle="modal" data-data="{{ $prescription }}"
+                                                            data-target="#showPrescriptionModal{{ $prescription->id }}"
+                                                            disabled class=" btn btn-dark btnShowPrescription">Pokaż
+                                                            receptę</button>
+                                                    </td>
                                                 </tr>
+                                                @include('doctor.prescriptionDetail',['doctor'=>auth()->user()])
                                             @endforeach
                                         @else
                                             <td>Brak wystawionych recept</td>
@@ -299,4 +306,17 @@
         </form>
     </div>
 
+
 @endsection
+@push('scripts')
+    <script>
+        $(document).ready(function() {
+            $('.btnShowPrescription').attr('disabled', false);
+
+            $('#showPrescription').on('show.bs.modal', function(e) {
+
+            });
+        });
+
+    </script>
+@endpush
