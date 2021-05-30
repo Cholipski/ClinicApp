@@ -7,7 +7,7 @@
                 <div class="col-md-12">
                     <div class="card d-flex justify-content-center align-items-center" style="min-height: 100px;">
                         <h2 class="text-bold mt-15" style="font-size: 1.5rem; font-weight: 700;">Dzień dobry,
-                            doktorze {{ $doc[0]['last_name'] }}
+                            doktorze {{ $doc->last_name }}
                         </h2>
                         <p class="text-muted">Tu znajdziesz wszystkie wstępne informacje aby
                             wspaniale zacząć dzień</p>

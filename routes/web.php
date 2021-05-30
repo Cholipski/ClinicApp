@@ -57,6 +57,7 @@ Route::group(['middleware' => ['auth', 'Patient', 'verified']], function () {
 	Route::resource('patient/cancel_appointment', 'Patient\CancelAppointmentController');
 	Route::resource('patient/profile', 'Patient\ProfileController');
 	Route::resource('patient/history', 'Patient\HistoryController');
+	Route::resource('patient/recommendation', 'Patient\RecommendationController');
 
 	Route::resource('patient/prescription', 'Patient\PrescriptionController');
 
