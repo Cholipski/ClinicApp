@@ -51,7 +51,7 @@
                                 <br>
                                 <p><b>Wykształcenie: </b>{{ $doctor_selected->education }}</p>
                                 <p><b>Numer telefonu: </b>{{ $doctor_selected->phone_number }}</p>
-                                <p><b>Adres zamieszkania: </b>{{ $doctor_selected->address }}</p>
+                                <p><b>Pokój: </b>{{ $doctor_selected->room }}</p>
                             </div>
 
                             <div class="">

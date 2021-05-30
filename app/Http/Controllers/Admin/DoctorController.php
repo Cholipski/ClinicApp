@@ -63,14 +63,15 @@ class DoctorController extends Controller
 	 */
 	public function store(Request $request)
 	{
-
 		$this->validateStore($request);
 
 		$data = $request->all();
 		$name = (new User)->userAvatar($request);
 		$data['image'] = $name;
 		$data['password'] = bcrypt($request->password);
-		User::create($data);
+		$user = User::create($data);
+
+		User::where('id',$user->id)->update(['email_verified_at'=>now()]);
 		return redirect()->back()->with('message', 'Pomyślnie dodano lekarza');
 	}
 

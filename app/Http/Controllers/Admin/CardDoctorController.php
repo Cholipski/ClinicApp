@@ -21,7 +21,7 @@ class CardDoctorController extends Controller
         $doctorID = $request->doctor_id;
         $patients = Booking::where('doctor_id', $doctorID)
             ->leftjoin('users','users.id','bookings.user_id')
-            ->select('users.id','users.first_name', 'users.last_name','users.email','users.address','users.phone_number')
+            ->select('users.id','users.first_name', 'users.last_name','users.email','users.room','users.phone_number')
             ->groupBy('id')
             ->get();
 
