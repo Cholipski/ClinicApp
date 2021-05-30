@@ -110,7 +110,7 @@ class DoctorController extends Controller
 			'first_name' => 'required',
 			'last_name' => 'required',
 			'education' => 'required',
-			'address' => 'required',
+			'room' => 'required',
 			'phone_number' => 'required|numeric',
 			'description' => 'required'
 		]);
@@ -123,7 +123,7 @@ class DoctorController extends Controller
 					'first_name' => $request->first_name,
 					'last_name' => $request->last_name,
 					'education' => $request->education,
-					'address' => $request->address,
+					'room' => $request->room,
 					'phone_number' => $request->phone_number,
 					'description' => $request->description,
 				]
@@ -142,13 +142,7 @@ class DoctorController extends Controller
 	}
 	public function delete(Request $request)
 	{
-
-		$user = User::where('id', $request->hiddenDoctorId)->get()->first();
-		$user->delete();
-
-
-
-		return redirect()->back()->with('message', 'Lekarz został usunięty!');
+	    //
 	}
 
 	public function validateStore($request)
@@ -160,12 +154,32 @@ class DoctorController extends Controller
 			'password' => 'required|min:6|max:25',
 			'gender' => 'required',
 			'education' => 'required',
-			'address' => 'required',
+			'room' => 'required',
 			'phone_number' => 'required|numeric',
 			'role_id' => 'required',
 			'description' => 'required',
 			'specialist' => 'required',
-			'image' => 'required'
-		]);
+			'image' => 'required|image|mimes:jpg,png,jpeg,gif|max:2048'
+		    ],
+            [
+                'first_name.required'=>'Imię jest wymagane',
+                'last_name.required'=>'Nazwisko jest wymagane',
+                'email.required'=>'Pole email jest wymagane',
+                'email.unique'=>'Istnieje konto z takim adresem email',
+                'password.required'=>'Hasło jest wymagane',
+                'password.min'=>'Minimalna liczba znaków to 6',
+                'password.max'=>'Maksymalna liczba znaków to 25',
+                'gender.required'=>'Płeć jest wymagana',
+                'education.required'=>'Wykształcenie jest wymagane',
+                'room.required'=>'Pokój lekarza jest wymagany',
+                'phone_number.required'=>'Telefon jest wymagany',
+                'phone_number.numeric'=>'Telefon może zawierać jedynie cyfry',
+                'role_id.required'=>'Wskaż uprawnienia',
+                'description.required'=>'Opis lekarza jest wymagany',
+                'specialist.required'=>'Specjalizacja lekarza jest wymagana',
+                'image.required'=>'Zdjęcie jest wymagane',
+
+            ]
+        );
 	}
 }

@@ -9,6 +9,8 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Mail\AppointmentBooked;
+use Illuminate\Support\Facades\Mail;
 use function Symfony\Component\Translation\t;
 
 class AppointmentController extends Controller
@@ -63,6 +65,19 @@ class AppointmentController extends Controller
         ]);
 
         Time::where('id',$request->available_time)->update(['status'=>1]);
+
+        $patient = User::where('id',auth()->user()->id)->get()->first();
+        $doctor = User::where('id',$request->doctor_id)->get()->first();
+
+        $details = [
+            'name' => $patient->first_name,
+            'date' => $date->date,
+            'hours' => $appointment_time->time,
+            'doctor' => $doctor->first_name." ".$doctor->last_name
+        ];
+
+        Mail::to($patient->email)
+            ->send(new AppointmentBooked($details));
         return redirect('/')->with('message','Pomyślnie zarezerwowano wizytę');
 
     }
