@@ -5,12 +5,17 @@ namespace App\Http\Controllers\Doctor;
 use App\Http\Controllers\Controller;
 use App\Models\Booking;
 use App\Models\Medicament;
+use App\Models\User;
 use Illuminate\Support\Str;
 use App\Models\Prescription;
 use App\Models\Recommendation;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Mail\CloseAppointment;
+use Illuminate\Support\Facades\Mail;
+
+
 
 class PatientTodayController extends Controller
 {
@@ -193,6 +198,20 @@ class PatientTodayController extends Controller
 
 		$booking->status = 2;
 		$booking->save();
+		
+		$patient = User::where('id',$booking->user_id)->get()->first();
+		$doctor = User::where('id',$booking->doctor_id)->get()->first();
+
+		$details = [
+            'name' => $patient->first_name,
+            'date' => $booking->date,
+            'hours' => $booking->time,
+            'doctor' => $doctor->first_name." ".$doctor->last_name,
+			'prescription' => isset($data['isPrescriptionActive']) ? 1 : 0,
+        ];
+
+        Mail::to($patient->email)
+            ->send(new CloseAppointment($details));
 
 		return redirect('doctor/patient_today')->with('message', 'Pomyślnie zakończono wizytę');
 	}
