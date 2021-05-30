@@ -131,7 +131,10 @@ class PatientTodayController extends Controller
 			->where('doctor_id', auth()->user()->id)
 			->get();
 
-		$prescriptions = Prescription::where('id_patient', $patient->user_id)->get();
+		$prescriptions = Prescription::where('id_patient', $patient->user_id)
+			->where('id_doctor', auth()->user()->id)
+			->get();
+
 
 		return view('doctor.appointment', compact('patient', 'appointments', 'prescriptions'));
 	}
