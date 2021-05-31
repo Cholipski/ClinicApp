@@ -6,19 +6,32 @@
     <title>Lista pacjentów</title>
     <meta name="description" content="">
     <meta name="keywords" content="">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
     body {
         font-family: DejaVu Sans;
         font-size: 12px;
     }
+    table, td, th {
+        border: 1px solid black;
+      }
+      
+    table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+    h1, h3{
+        text-align: center;
+    }
     </style>
 </head>
 <body>
+    <h1>Lista pacjentów</h1>
+    <h3>dr. {{$doctor->first_name}} {{$doctor->last_name}}</h3>
+    <h3>{{$date}}</h3>
     <div class="container-fluid">
         <div class="card">
             <div class="card-body">
-                <table id="patient_table" class="table">
+                <table class="table">
                     <thead>
                     <tr>
                         <th>Id</th>
@@ -39,7 +52,7 @@
                         </td>
                         <td>{{$booking->time}}</td>
                         <td>{{$booking->symptoms}}</td>
-                        <td>{{$booking->phone_number}}</td>
+                        <td>{{App\Models\User::where('id', $booking->user_id)->value('phone_number')}}</td>
                     </tr>
                     @endforeach
                     </tbody>

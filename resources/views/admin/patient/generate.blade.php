@@ -61,7 +61,7 @@
                             </td>
                             <td>{{$booking->time}}</td>
                             <td>{{$booking->symptoms}}</td>
-                            <td>{{$booking->phone_number}}</td>
+                            <td>{{App\Models\User::where('id', $booking->user_id)->value('phone_number')}}</td>
                         </tr>
                         @endforeach
                         </tbody>
