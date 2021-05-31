@@ -103,7 +103,7 @@
                     <p id="doctorSpecialist" class="text-center"></p>
                     <p id="doctorEmail" class="text-center"></p>
                     <p id="doctorPhone" class="text-center"></p>
-                    <p id="doctorAddress" class="text-center"></p>
+                    <p id="doctorRoom" class="text-center"></p>
 
 
                 </div>
@@ -128,7 +128,7 @@
                 $(".modal-body #doctorPhone").text("Numer telefonu: " + doctor.phone_number);
                 $(".modal-body #doctorEmail").text("Adres email: " + doctor.email);
                 $(".modal-body #doctorSpecialist").text(doctor.specialist);
-                $(".modal-body #doctorAddress").text("Adres zamieszkania: " + doctor.address);
+                $(".modal-body #doctorRoom").text("Numer pokoju: " + doctor.room);
                 $(".modal-body #doctorPhoto").attr("src", `{{ asset('images') }}/${doctor.image}`);
             });
         });

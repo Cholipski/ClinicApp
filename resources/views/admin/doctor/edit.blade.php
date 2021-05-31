@@ -34,7 +34,7 @@
                             <a href="/admin/doctor">Lista lekarzy</a>
                         </li>
                         <li class="breadcrumb-item active">
-                            <a href="/admin/doctor">{{ $user->first_name }} {{ $user->last_name }}</a>
+                            <a href="/admin/doctor">Lekarz {{ $user->first_name }} {{ $user->last_name }}</a>
                         </li>
                     </ol>
                 </nav>
@@ -46,9 +46,9 @@
             @csrf
             {{ method_field('PUT') }}
             <div class="row">
-                <div class="col-lg-1 d-none d-lg-block" style="min-height: 600px"></div>
-                <div class="col-lg-3" style="min-height: 600px">
-                    <div class="card" style="min-height: 600px">
+                <div class="col-lg-1 d-none d-lg-block" style="min-height: 480px"></div>
+                <div class="col-lg-3" style="min-height: 480px">
+                    <div class="card" style="min-height: 480px">
                         <div class="card-header justify-content-center">
                             <h3>Dane lekarza</h3>
                         </div>
@@ -58,8 +58,7 @@
                                     src="{{ asset('images') }}/{{ $user->image }}">
                                 <h5 class="font-weight-bold mt-10">{{ $user->first_name }}
                                     {{ $user->last_name }}</h5>
-                                <span class="text-black-50">{{ $user->education }}</span>
-                                <span class="text-black-50">{{ $user->phone_number }}</span>
+                                <span class="text-black-50">{{ $user->email }}</span>
                                 <span class="text-black-50">{{ $user->address }}</span>
                                 <span class="text-black-50">{{ $user->specialist }}</span>
                             </div>
@@ -67,8 +66,8 @@
                     </div>
                 </div>
 
-                <div class="col-lg-7" style="min-height: 600px">
-                    <div class="card text-center" style="min-height: 600px">
+                <div class="col-lg-7" style="min-height: 480px">
+                    <div class="card text-center" style="min-height: 480px">
                         <div class="card-header justify-content-center">
                             <h3>Edycja danych lekarza</h3>
                         </div>
@@ -80,34 +79,43 @@
                                         value="{{ $user->first_name }}">
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="lastName">Naziwsko</label>
+                                    <label for="lastName">Nazwisko</label>
                                     <input type="text" class="form-control" name="last_name" id="lastName"
                                         value="{{ $user->last_name }}">
                                 </div>
                             </div>
                             <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label for="edu">Wykształcenie</label>
-                                    <input type="text" class="form-control" name="education" id="edu"
-                                        value="{{ $user->education }}">
+                                <div class="form-group col-md-5">
+                                    <div class="form-row">
+                                        <div class="form-group col-md-12">
+                                            <label for="edu">Wykształcenie</label>
+                                            <input type="text" class="form-control" name="education" id="edu"
+                                                value="{{ $user->education }}">
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-12">
+                                            <label for="phoneNumber">Numer telefonu</label>
+                                            <input type="text" class="form-control" name="phone_number" id="phoneNumber"
+                                                value="{{ $user->phone_number }}">
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-12">
+                                            <label for="doctorsRoom">Numer pokoju</label>
+                                            <input type="text" class="form-control" name="room" id="doctorsRoom"
+                                                value="{{ $user->room }}">
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="form-group col-md-6">
-                                    <label for="phoneNumber">Numer telefonu</label>
-                                    <input type="text" class="form-control" name="phone_number" id="phoneNumber"
-                                        value="{{ $user->phone_number }}">
+                                <div class="form-group col-md-7">
+                                    <label for="about">O lekarzu</label>
+                                    <textarea class="form-control" name="description" id="about"
+                                        style="height:190px;">{{ $user->description }}</textarea>
                                 </div>
+
                             </div>
-                            <div class="form-group">
-                                <label for="cityAdress">Adres zamieszkania</label>
-                                <input type="text" class="form-control" name="address" id="cityAdress"
-                                    value="{{ $user->address }}">
-                            </div>
-                            <div class="form-group">
-                                <label for="about">O lekarzu</label>
-                                <textarea class="form-control" name="description" id="about"
-                                    style="height:160px;">{{ $user->description }}</textarea>
-                            </div>
-                            <button type="submit" class="btn btn-secondary">Zapisz zmiany</button>
+                            <button type="submit" class="btn btn-dark">Zapisz zmiany</button>
                         </div>
                     </div>
                 </div>
