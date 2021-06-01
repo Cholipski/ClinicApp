@@ -4,7 +4,7 @@
     <div class="container">
         <div class="card">
             <div class="card-header">
-                Wszystkie wizyty
+                <h2>Historia Twoich Wizyt</h2>
             </div>
             <div class="card-body">
                 @if($appointments->count() > 0)
@@ -64,11 +64,11 @@
                     </div>
                 @endif
             </div>
-            <div class="row">
+        </div>
+        <div class="row">
                 <div class="col-md-12">
-                    <a href="{{url()->previous()}}" class="btn btn-dark btn-md btn-block">Powrót</a>
+                    <a href="{{url()->previous()}}" class="btn btn-dark btn-md btn-block col-lg-2 mt-5">Cofnij</a>
                 </div>
             </div>
-        </div>
     </div>
 @endsection

@@ -14,7 +14,7 @@
             @endif
             <h1 class="heading">Twoje wizyty</h1>
              <div class="card mt-4">
-            @if(isset($appointments))
+            @if(count($appointments) > 0)
                 <table id="appointments" class="table">
                     <thead>
                     <tr>

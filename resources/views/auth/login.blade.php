@@ -32,7 +32,7 @@
                 </div>
                 <br>
                 <div class="col-md-8 offset-md-0">
-                    <button type="submit" class=" btn-login">
+                    <button type="submit" class=" btn-login btn-dark">
                         {{ __('Zaloguj') }}
                     </button>
                     @if (Route::has('password.request'))
