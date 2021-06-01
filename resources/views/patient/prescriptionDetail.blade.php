@@ -4,11 +4,8 @@
 
     @if(isset($prescription))
 
-        <div class="container" style="border: 1px solid #a1a1a1;padding: 15px;width: 70%;">
+        <div class="container mt-3" style="border-radius: 5px ;padding: 15px;width: 70%;background-color:white; box-shadow: 0 0 6px #a0a0a0;">
             <div class="row mb-4">
-                <div class="col-lg-3">
-                    <a href="{{route('prescription.index')}}" class="btn btn-dark" style="width:100%">Powrót</a>
-                </div>
             </div>
             <div class="row">
                 <div class="col-lg-12">
@@ -45,23 +42,23 @@
                 </div>
             </div>
             <div class="row text-center mt-4">
-                <div class="col-lg-6">
-                    <div>
-                        <b>Lek.</b> {{$doctor->first_name}} {{$doctor->last_name}}
+                <div class="col-lg-6 text-style-recipt">
+                    <div class="text-style-recipt">
+                        <b>Lekarz:</b> {{$doctor->first_name}} {{$doctor->last_name}}
                     </div>
-                    <div>
-                        <b>Spec.</b> {{$doctor->specialist}}
+                    <div class="text-style-recipt">
+                        <b>Specjalizacja:</b> {{$doctor->specialist}}
                     </div>
-                    <div>
-                        <b>Tel.</b> {{$doctor->phone_number}}
+                    <div class="text-style-recipt">
+                        <b>Telefon:</b> {{$doctor->phone_number}}
                     </div>
                 </div>
                 <div class="col-lg-6">
-                    <div>
+                    <div class="text-style-recipt">
                         <b>Imię i nazwisko: </b> {{$patient->first_name}} {{$patient->last_name}}
                     </div>
-                    <div>
-                        <b>Tel.</b> {{$patient->phone_number}}
+                    <div class="text-style-recipt">
+                        <b>Telefon:</b> {{$patient->phone_number}}
                     </div>
                 </div>
             </div>
@@ -93,6 +90,8 @@
                 </div>
             @endforeach
         </div>
+       <center><a href="{{route('prescription.index')}}" class="btn btn-dark mt-4" style="width:30vh">Cofnij</a></center> 
+        
 
 
     @else
