@@ -37,7 +37,7 @@ class PatientController extends Controller
      */
     public function list()
     {
-        $bookings = Booking::where('status',1)->get();
+        $bookings = Booking::where('status',2)->get();
 
         return view('admin.patient.list', compact('bookings'));
     }
@@ -64,15 +64,24 @@ class PatientController extends Controller
     public function show(int $id)
     {
         $bookings = Booking::where('id',$id)
-        ->select('bookings.id','bookings.user_id','bookings.doctor_id', 'bookings.date')
-        ->get();
+            ->select('bookings.id','bookings.user_id','bookings.doctor_id', 'bookings.date', 'bookings.time', 'bookings.symptoms')
+            ->get();
+
+        $patients= Booking::where('user_id',$bookings->first()->user_id)
+            ->join('users','users.id' ,'=' ,'bookings.user_id')
+            ->select('users.first_name as name','users.last_name as last_name')
+            ->get();
+        $doctor= Booking::where('doctor_id',$bookings->first()->doctor_id)
+            ->join('users','users.id' ,'=' ,'bookings.doctor_id')
+            ->select('users.first_name as name','users.last_name as last_name')
+            ->get();
 
         $prescript = Prescription::where('id_doctor',$bookings->first()->doctor_id)
             ->where('id_patient', $bookings->first()->user_id)
             ->where('invoice_date', $bookings->first()->date)
             ->get();
 
-        return view('admin.patient.listDetail', compact('bookings', 'prescript'));
+        return view('admin.patient.listDetail', compact('bookings', 'prescript', 'patients', 'doctor'));
     }
 
     /**
