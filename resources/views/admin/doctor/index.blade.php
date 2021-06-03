@@ -29,7 +29,7 @@
                             <a href="/admin/home"><i class="ik ik-home"></i></a>
                         </li>
                         <li class="breadcrumb-item active">
-                            <a href="#">Lista lekarzy</a>
+                            Lista lekarzy
                         </li>
                     </ol>
                 </nav>
