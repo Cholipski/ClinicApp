@@ -185,7 +185,7 @@
                                     </div>
                                     <div class="col-md-3">
                                         <div class="row-md-12">
-                                            <label class="labels">Opłata</label><input type="text" name="payment1"
+                                            <label class="labels">Odpłatność</label><input type="text" name="payment1"
                                                 class="form-control" value="">
                                         </div>
                                     </div>

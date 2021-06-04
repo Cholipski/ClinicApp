@@ -19,8 +19,10 @@ class CancelAppointmentController extends Controller
     {
         $appointments = Booking::where('user_id', auth()
             ->user()->id)
-            ->where('status',0)
-            ->orWhere('status',1)
+            ->where(function($s) {
+                $s->where('status', 0)
+                  ->orWhere('status', 1);
+            })
             ->leftjoin('users','users.id','bookings.doctor_id')
             ->select('bookings.id','users.specialist','users.first_name',
                 'users.last_name','bookings.date','bookings.time','bookings.status')
