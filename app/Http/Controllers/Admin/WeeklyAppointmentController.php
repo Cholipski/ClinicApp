@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Http\Controllers\Controller;
 use Datetime;
+
 class WeeklyAppointmentController extends Controller
 {
     /**

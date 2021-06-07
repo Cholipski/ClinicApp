@@ -29,6 +29,7 @@ class CloseAppointment extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.closeappointment');
+        return $this->subject('Potwierdzenie zakończenia wizyty')
+                    ->markdown('emails.closeappointment');
     }
 }

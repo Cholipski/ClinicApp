@@ -85,7 +85,7 @@
                         <tbody>
                             <tr>
                                 <th scope="row">1</th>
-                                <td><input type="checkbox" name="time[]" value="9">9:00</td>
+                                <td><input type="checkbox" name="time[]" value="9.00">9:00</td>
                                 <td><input type="checkbox" name="time[]" value="9.35">9:35</td>
                                 <td><input type="checkbox" name="time[]" value="10.10">10:10</td>
                             </tr>
