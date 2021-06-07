@@ -28,10 +28,10 @@
                 <nav class="breadcrumb-container" aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="/admin/home"><i class="ik ik-home"></i></a>
+                            <a href="{{ route('admin.home') }}"><i class="ik ik-home"></i></a>
                         </li>
                         <li class="breadcrumb-item">
-                            <a href="/admin/doctor">Lista lekarzy</a>
+                            <a href="{{ url('/admin/doctor') }}">Lista lekarzy</a>
                         </li>
                         <li class="breadcrumb-item active">
                             Lekarz {{ $user->first_name }} {{ $user->last_name }}
@@ -61,7 +61,11 @@
                                 <span class="text-black-50">{{ $user->email }}</span>
                                 <span class="text-black-50">{{ $user->address }}</span>
                                 <span class="text-black-50">{{ $user->specialist }}</span>
+                                <a href="{{ url('/admin/doctor') }}" class="btn btn-dark green"
+                                    style="margin-top: 20px">Cofnij</a>
                             </div>
+
+
                         </div>
                     </div>
                 </div>
@@ -121,6 +125,7 @@
                 </div>
             </div>
         </form>
+
     </div>
 
 @endsection

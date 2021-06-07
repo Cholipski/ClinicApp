@@ -16,7 +16,7 @@
                 <nav class="breadcrumb-container" aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="/admin/home"><i class="ik ik-home"></i></a>
+                            <a href="{{ route('admin.home') }}"><i class="ik ik-home"></i></a>
                         </li>
                         <li class="breadcrumb-item active">
                             Generuj liste pacjentów
@@ -48,12 +48,13 @@
                             <select class="form-control @error('role_id') is-invalid @enderror" name="doctor_id">
                                 <option value="">Wybierz lekarza</option>
                                 @foreach (App\Models\User::where('role_id', '=', '1')->get() as $doctor)
-                                    <option value="{{ $doctor->id }}">{{ $doctor->first_name }} {{ $doctor->last_name }}
+                                    <option value="{{ $doctor->id }}">{{ $doctor->first_name }}
+                                        {{ $doctor->last_name }}
                                     </option>
                                 @endforeach
                             </select>
                         </div>
-                        <button type="submit" class="btn btn-success">Zapisz listę na dzisiejszy dzień</a></button>
+                        <button type="submit" class="btn btn-dark">Zapisz listę na dzisiejszy dzień</a></button>
                     </div>
                 </div>
                 <div class="col-lg-6">

@@ -7,7 +7,7 @@
                 <div class="page-header-title">
                     <i class="ik ik-inbox bg-blue"></i>
                     <div class="d-inline">
-                        <h5>Pacjenci</h5>
+                        <h5>Wizyty</h5>
                         <span>Historia wizyt</span>
                     </div>
                 </div>
@@ -16,7 +16,7 @@
                 <nav class="breadcrumb-container" aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="/admin/home"><i class="ik ik-home"></i></a>
+                            <a href="{{ route('admin.home') }}"><i class="ik ik-home"></i></a>
                         </li>
                         <li class="breadcrumb-item active">
                             Historia wizyt

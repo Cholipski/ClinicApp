@@ -25,7 +25,7 @@
                 <nav class="breadcrumb-container" aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="/admin/home"><i class="ik ik-home"></i></a>
+                            <a href="{{ route('admin.home') }}"><i class="ik ik-home"></i></a>
                         </li>
                         <li class="breadcrumb-item active" aria-current="page">Utwórz wizyty na pojedynczy dzień</li>
                     </ol>
@@ -74,7 +74,7 @@
                     <span style="margin-left: 500px">
                         Wszystkie
                         <input type="checkbox" onclick="for(c in document.getElementsByName('time[]'))
-                                            document.getElementsByName('time[]').item(c).checked=this.checked">
+                                                        document.getElementsByName('time[]').item(c).checked=this.checked">
                     </span>
                 </div>
                 <div class="card-body">
@@ -125,7 +125,7 @@
             </div>
             <div class="card">
                 <div class="card-body">
-                    <button type="submit" class="btn btn-primary">Utwórz dostepne wizyty</button>
+                    <button type="submit" class="btn btn-dark">Utwórz wybrane terminy</button>
                 </div>
             </div>
         </form>

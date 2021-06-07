@@ -13,7 +13,8 @@
 
             <div class="row clearfix">
                 <div class="col-lg-3 col-md-6 col-sm-12">
-                    <div class="widget" style="height: 120px; background: linear-gradient(180deg, #FFFFFF 92%, #d9534f 8%);">
+                    <div class="widget"
+                        style="height: 120px; background: linear-gradient(180deg, #FFFFFF 92%, #d9534f 8%);">
                         <div class="widget-body">
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="state">
@@ -28,7 +29,8 @@
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-12">
-                    <div class="widget" style="height: 120px; background: linear-gradient(180deg, #FFFFFF 92%, #5cb85c 8%);">
+                    <div class="widget"
+                        style="height: 120px; background: linear-gradient(180deg, #FFFFFF 92%, #5cb85c 8%);">
                         <div class="widget-body">
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="state">
@@ -43,7 +45,8 @@
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-12">
-                    <div class="widget" style="height: 120px; background: linear-gradient(180deg, #ffffff 92%, #f0ad4e 8%);">
+                    <div class="widget"
+                        style="height: 120px; background: linear-gradient(180deg, #ffffff 92%, #f0ad4e 8%);">
                         <div class="widget-body">
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="state">
@@ -58,7 +61,8 @@
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-12">
-                    <div class="widget" style="height: 120px; background: linear-gradient(180deg, #FFFFFF 92%, #5bc0de 8%);">
+                    <div class="widget"
+                        style="height: 120px; background: linear-gradient(180deg, #FFFFFF 92%, #5bc0de 8%);">
                         <div class="widget-body">
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="state">
@@ -83,13 +87,18 @@
                             </div>
                         </div>
                         <div class="card-body" style="margin-top: 1.5rem">
-                            <div class="w-100" style="width:100%; height:270px; overflow-x: auto; display: flex; flex-wrap: wrap; flex-direction: column;">
-                                @for($i =0; $i<count($patient);$i++)
-                                    <div class="card animate-pulse ml-3" style="width: 12rem; height: 17rem">
+                            <div class="w-100"
+                                style="width:100%; height:270px; overflow-x: auto; display: flex; flex-wrap: wrap; flex-direction: column;">
+                                @for ($i = 0; $i < count($patient); $i++)
+                                    <div class="card animate-pulse ml-3"
+                                        style="width: 12rem; height: 17rem; cursor: default">
                                         <div class="card-body text-center border">
-                                        <h5 class="card-title font-weight-bold border-bottom p-3">{{$patient[$i]['name']}} {{$patient[$i]['last_name']}}</h5>
-                                        <p class="card-text">Lekarz: {{$doctor[$i]['doctor_name']}} {{$doctor[$i]['doctor_last_name']}}</p>
-                                        <p class="card-text">Przjęcie pacjenta o godzinie: {{$patient[$i]['time']}}</p>
+                                            <h5 class="card-title font-weight-bold border-bottom p-3">
+                                                {{ $patient[$i]['name'] }} {{ $patient[$i]['last_name'] }}</h5>
+                                            <p class="card-text">Lekarz: {{ $doctor[$i]['doctor_name'] }}
+                                                {{ $doctor[$i]['doctor_last_name'] }}</p>
+                                            <p class="card-text">Przyjęcie pacjenta o godzinie: {{ $patient[$i]['time'] }}
+                                            </p>
                                         </div>
                                     </div>
                                 @endfor
@@ -114,28 +123,28 @@
         <div class="card">
             <div class="card-body">
                 <h3 class="card-title mb-3">Wizyty do zaakceptowania</h3>
-                <div class="table-responsive">
-                    <table class="table table-hover" style="margin-top: 2.5rem">
-                        <thead class="thead-dark">
+
+                <table id="patient_table" class="table" style="padding: 10px">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Imię i nazwisko pacjenta</th>
+                            <th>Doktor</th>
+                            <th>Data wizyty</th>
+                            <th>Godzina</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for ($i = 0; $i < count($patient_to_accept); $i++)
                             <tr>
-                                <th>Imię i naziwsko pacjenta</th>
-                                <th>Doktor</th>
-                                <th>Data wizyty</th>
-                                <th>Godzina</th>
+                                <td>{{ $patient_to_accept[$i]['name'] }} {{ $patient_to_accept[$i]['last_name'] }}</td>
+                                <td>{{ $doctor_to_accept[$i]['doctor_name'] }}
+                                    {{ $doctor_to_accept[$i]['doctor_last_name'] }}</td>
+                                <td>{{ $patient_to_accept[$i]['date'] }}</td>
+                                <td>{{ $patient_to_accept[$i]['time'] }}</td>
                             </tr>
-                        </thead>
-                        <tbody>
-                            @for($i =0; $i<count($patient);$i++)
-                                <tr>
-                                    <td>{{$patient[$i]['name']}} {{$patient[$i]['last_name']}}</td>
-                                    <td>{{$doctor[$i]['doctor_name']}} {{$doctor[$i]['doctor_last_name']}}</td>
-                                    <td>{{$patient[$i]['date']}}</td>
-                                    <td>{{$patient[$i]['time']}}</td>
-                                </tr>
-                            @endfor
-                        </tbody>
-                    </table>
-                </div>
+                        @endfor
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
