@@ -34,7 +34,7 @@
                             <a href="/admin/doctor">Lista lekarzy</a>
                         </li>
                         <li class="breadcrumb-item active">
-                            <a href="/admin/doctor">Lekarz {{ $user->first_name }} {{ $user->last_name }}</a>
+                            Lekarz {{ $user->first_name }} {{ $user->last_name }}
                         </li>
                     </ol>
                 </nav>

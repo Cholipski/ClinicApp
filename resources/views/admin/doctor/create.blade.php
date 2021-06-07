@@ -17,10 +17,9 @@
                 <nav class="breadcrumb-container" aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="../index.html"><i class="ik ik-home"></i></a>
+                            <a href="/admin/home"><i class="ik ik-home"></i></a>
                         </li>
-                        <li class="breadcrumb-item"><a href="#">doctor</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">create</li>
+                        <li class="breadcrumb-item active" aria-current="page">Dodaj lekarza</li>
                     </ol>
                 </nav>
             </div>
@@ -106,9 +105,8 @@
                             </div>
                             <div class="col-lg-6">
                                 <label for="address">Pokój lekarza</label>
-                                <input type="text" name="room"
-                                    class="form-control @error('room') is-invalid @enderror" placeholder="Pokój lekarza"
-                                    value="{{ old('room') }}">
+                                <input type="text" name="room" class="form-control @error('room') is-invalid @enderror"
+                                    placeholder="Pokój lekarza" value="{{ old('room') }}">
                                 @error('room')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -176,9 +174,9 @@
                                     <label for="image">Dodaj zdjęcie</label>
                                     <input type="file" name="image" class="file-upload-default" />
                                     @error('image')
-                                    <span class="invalid-feedback" style="display: flex;" role="alert">
-                                        <strong>Zdjęcie jest wymagane</strong>
-                                    </span>
+                                        <span class="invalid-feedback" style="display: flex;" role="alert">
+                                            <strong>Zdjęcie jest wymagane</strong>
+                                        </span>
                                     @enderror
                                 </div>
                             </div>
@@ -189,8 +187,8 @@
                             <label for="description mt-5">O lekarzu</label>
                             <textarea class="form-control @error('description') is-invalid @enderror" name="description"
                                 id="description" rows="4">
-                                                                    {{ old('description') }}
-                                                        </textarea>
+                                                                            {{ old('description') }}
+                                                                </textarea>
                             @error('description')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
