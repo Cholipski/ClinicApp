@@ -134,6 +134,7 @@ class PatientTodayController extends Controller
 
 		$appointments = Booking::where('user_id', $patient->user_id)
 			->where('doctor_id', auth()->user()->id)
+			->where('status', 2)
 			->get();
 
 		$prescriptions = Prescription::where('id_patient', $patient->user_id)
