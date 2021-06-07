@@ -95,7 +95,8 @@
 
 
     @else
-        Nie znaleziono takiej recepty
+       <div class="heading">Nie masz wystawionej żadnej recepty</div> 
+       
     @endif
 
 

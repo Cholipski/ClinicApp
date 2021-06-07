@@ -2,10 +2,9 @@
 
 @section('content')
     <div class="container">
-        <div class="card">
-            <div class="card-header">
-                <h2>Historia Twoich Wizyt</h2>
-            </div>
+    <h1 class="heading">Historia Twoich Wizyt</h1>
+        <div class="card mt-4">
+        
             <div class="card-body">
                 @if($appointments->count() > 0)
                     <table class="table">

@@ -24,7 +24,8 @@ textarea {
     width: 100% !important;
 }
 
-.radio_appointment {}
+.radio_appointment {
+}
 
 .btn_appointment {
     width: 100px;
@@ -39,10 +40,11 @@ textarea {
 .btn-login {
     width: 150px;
     height: 30px;
-    background: #98d4ca;
+    background: #343a40;
     border-radius: 5px;
-    border-color: #98d4ca;
+    border-color: #343a40;
     font-size: 16px;
+    color: white;
 }
 
 .image-flip:hover .back,
@@ -205,3 +207,4 @@ h3 {
     border-radius: 1vh;
     box-shadow: 0 0 6px #a0a0a0;
 }
+

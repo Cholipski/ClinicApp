@@ -27,8 +27,9 @@
                     </div>
                     @endif
                 </div>
+                
             </div>
-            <a href="{{route('new_appointment.index')}}" class="btn btn-dark col-lg-4 mt-5 ">Cofnij</a>
+            
 
         </div>
         @if(isset($dates))
@@ -59,6 +60,7 @@
                 {{$dates->links()}}
             </div>
         </div>
+        <a href="{{route('new_appointment.index')}}" class="btn btn-dark col-lg-2 mt-5 ">Cofnij</a>
 
     </div>
     @endif
@@ -85,7 +87,7 @@
                         @foreach($times as $time)
                         <div class="col-lg-3">
                             <input type="radio" class="btn-check radio_appointment" name="available_time" id="{{$time->id}}" value="{{$time->id}}" autocomplete="off">
-                            <label class="btn btn-secondary btn_appointment" for="{{$time->id}}">{{$time->time}}</label>
+                            <label class="btn btn-dark btn_appointment" for="{{$time->id}}">{{$time->time}}</label>
                         </div>
                         @endforeach
                         <input type="text" hidden value="{{$doctor->id}}" name="doctor_id">
@@ -106,7 +108,9 @@
                         </div>
                     </div>
                 </form>
+                
             </div>
+            <a href="{{url()->previous()}}" class="btn btn-dark col-lg-2 mt-5 ">Cofnij</a>
         </div>
     </div>
     @endif
