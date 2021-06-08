@@ -18,7 +18,7 @@
                                     <option value="Pulmonolog">Pulmonolog</option>
                                 </select>
                             </div>
-                            <button type="submit" class="btn btn-primary">Wyszukaj</button>
+                            <button type="submit" class="btn btn-dark">Wyszukaj</button>
                         </form>
                     </div>
                 </div>
@@ -28,6 +28,7 @@
     </div>
     <div class="row pt-5">
         <div class="col-lg-12">
+            <div class= "row">
             @if(isset($doctors))
             @if(count($doctors) != 0)
             @foreach($doctors as $doctor)
@@ -35,7 +36,7 @@
                 <div class="image-flip">
                     <div class="mainflip flip-0">
                         <div class="front">
-                            <div class="card text-center">
+                            <div class="card text-center mt-3">
                                 <div class="card-body text-center">
                                     <p><img class="img-fluid" src="{{asset('images')}}/{{$doctor->image}}"></p>
                                     <h1>{{$doctor->specialist}}</h1>
@@ -45,22 +46,26 @@
                         </div>
                         <div class="back">
                             <div class="card">
-                                <div class="card-body text-center mt-4">
+                                <div class="card-body text-center mt-2">
                                     <h4 class="card-title">O lekarzu:</h4>
                                     <p class="card-text">{{$doctor->description}}</p>
-                                    <a href="{{route('new_appointment.show',$doctor->id)}}" class="btn btn-primary btn-available-date">Pokaż dostepne terminy</a>
+                                    <a href="{{route('new_appointment.show',$doctor->id)}}" class="btn btn-dark btn-available-date">Pokaż dostepne terminy</a>
                                 </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
+                  
             </div>
             @endforeach
             @endif
+            </div>
         </div>
-        <a href="{{ url('/') }}" class="btn btn-dark green col-md-1 mt-5">Cofnij</a> 
+        
     </div>
     @endif
+    <a href="{{ url('/') }}" class="btn btn-dark green col-md-1 mt-5">Cofnij</a> 
 </div>
 
 @endsection

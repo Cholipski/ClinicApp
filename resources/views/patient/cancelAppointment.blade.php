@@ -21,10 +21,10 @@
                         <th scope="col">Specjalizacja</th>
                         <th scope="col">Imię lekarza</th>
                         <th scope="col">Nazwisko lekarza</th>
-                        <th scope="col">Data</th>
+                        <th scope="col">Data wizyty</th>
                         <th scope="col">Godzina</th>
                         <th scope="col">Status</th>
-                        <th scope="col">Akcje</th>
+                        <th scope="col"></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -90,7 +90,7 @@
                 </div>
             </div>
         </div>
-        <a href="{{ url('/') }}" class="btn btn-dark col-lg-2 mt-4 ">Cofnij</a>
+        <a href="{{ url('/') }}" class="btn btn-dark col-lg-2 mt-5 ">Cofnij</a>
     </div>
     
     <script type="text/javascript">

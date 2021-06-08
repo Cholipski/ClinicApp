@@ -6,6 +6,7 @@
  <div class="container">
         <div class="recipe-box">
         <h1 style="text-align:center;">Twoje e-recepty</h1>
+		<div class="row">
             @foreach($prescriptions as $prescription)
             <div class="col-lg-4 col-xs-12 text-center">
 					<div class="box">
@@ -21,16 +22,25 @@
 						<div class="box-btn">
 						    <a href="{{route('prescription.show',$prescription->id)}}" class="btn btn-dark">Wyświetl szczegóły</a>
 						</div>
+						
 					 </div>
+					 
 				</div>	 
             @endforeach
+			</div>
         </div>
+		
 		<a href="{{ url('/') }}" class="btn btn-dark col-lg-2 mt-4 ">Cofnij</a>
+		
     </div>
+	
     @else
-        Nie masz wystawionej żadnej recepty
+        <div class="heading">Nie masz aktualnie wystawionej żadnej recepty</div>
+		<center><a href="{{ url('/') }}" class="btn btn-dark col-lg-2 mt-5 ">Cofnij</a></center>
+		
     @endif
-
+	
+	
 
 
 @endsection
