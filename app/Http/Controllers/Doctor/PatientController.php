@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Doctor;
 
 use App\Http\Controllers\Controller;
 use App\Models\Booking;
+use App\Models\Prescription;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PatientController extends Controller
 {
@@ -54,7 +56,19 @@ class PatientController extends Controller
      */
     public function show($id)
     {
-        //
+        $doc = Auth::user()->getAuthIdentifier();
+
+        $patients = User::where('id', $id)
+            ->get();
+
+        $bookings = Booking::where('user_id', $id)
+            ->get();
+
+        $prescriptions = Prescription::where('id_patient', $id)
+            ->where('id_doctor', $doc)
+            ->get();
+
+        return view('doctor.patientCard',compact('patients', 'bookings' ,'prescriptions'));
     }
 
     /**

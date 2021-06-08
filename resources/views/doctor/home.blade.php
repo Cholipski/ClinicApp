@@ -76,7 +76,7 @@
                             <div class="card-body">
                                 <h3 style="margin-top: 4rem">{{ $next->first_name }} {{ $next->last_name }}</h3>
                                 <p class="card-text" style="font-size: 2rem; font-weight: 400">{{ $next->time }}</p>
-                                <a href="#" class="btn btn-secondary w-20 h-10" style="margin-top: 3rem;">Karta
+                                <a href="{{route('doctor.patient', $next->id)}}" class="btn btn-secondary w-20 h-10" style="margin-top: 3rem;">Karta
                                     pacjenta</a>
                             </div>
                         @else

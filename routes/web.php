@@ -48,6 +48,7 @@ Route::group(['middleware' => ['auth', 'Doctor', 'verified']], function () {
 	Route::resource('doctor/home', 'Doctor\HomeController');
 	Route::resource('doctor/patient', 'Doctor\PatientController');
 	Route::resource('doctor/patient_today', 'Doctor\PatientTodayController');
+    Route::get('doctor/patient/{id}', 'Doctor\PatientController@show')->name('doctor.patient');
 	Route::get('doctor/patient_today/appointment/{id}', 'Doctor\PatientTodayController@appointment')->name('doctor.appointment');
 	Route::post('doctor/patient_today/prescription', 'Doctor\PatientTodayController@prescription')->name('doctor.prescription');
 });
