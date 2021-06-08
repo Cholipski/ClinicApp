@@ -15,7 +15,7 @@
                 <nav class="breadcrumb-container" aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="/admin/home"><i class="ik ik-home"></i></a>
+                            <a href="{{ route('admin.home') }}"><i class="ik ik-home"></i></a>
                         </li>
                         <li class="breadcrumb-item active">
                             Karta lekarza
@@ -43,7 +43,7 @@
                                     </option>
                                 @endforeach
                             </select>
-                            <button type="submit" class="btn btn-secondary" style="margin-top: 1rem">Pokaż wizyty</button>
+                            <button type="submit" class="btn btn-dark" style="margin-top: 1rem">Pokaż wizyty</button>
                         </div>
                     </div>
                 </form>
@@ -81,13 +81,10 @@
                         </div>
                         <div class="card-body">
                             <div class="row">
-
-                                <div class="col-md-6">
-                                    <div class="col-md-12">
-                                        <b>O lekarzu</b>
-                                        <div class="d-flex justify-content-between align-items-center experience">
-                                            {{ $doctor_selected->description }}
-                                        </div>
+                                <div class="col-md-12">
+                                    <b>O lekarzu</b>
+                                    <div class="d-flex align-items-center experience">
+                                        {{ $doctor_selected->description }}
                                     </div>
                                 </div>
                             </div>

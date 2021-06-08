@@ -30,7 +30,7 @@
                 <nav class="breadcrumb-container" aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="/admin/home"><i class="ik ik-home"></i></a>
+                            <a href="{{ route('admin.home') }}"><i class="ik ik-home"></i></a>
                         </li>
                         <li class="breadcrumb-item active" aria-current="page">
                             Lista wizyt
@@ -78,7 +78,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
-                        <button type="submit" class="btn btn-primary">Pokaż wizyty</button>
+                        <button type="submit" class="btn btn-dark">Pokaż wizyty</button>
                     </div>
                 </div>
             </div>

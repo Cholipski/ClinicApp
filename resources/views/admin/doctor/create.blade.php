@@ -17,7 +17,7 @@
                 <nav class="breadcrumb-container" aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="/admin/home"><i class="ik ik-home"></i></a>
+                            <a href="{{ route('admin.home') }}"><i class="ik ik-home"></i></a>
                         </li>
                         <li class="breadcrumb-item active" aria-current="page">Dodaj lekarza</li>
                     </ol>
@@ -187,16 +187,15 @@
                             <label for="description mt-5">O lekarzu</label>
                             <textarea class="form-control @error('description') is-invalid @enderror" name="description"
                                 id="description" rows="4">
-                                                                            {{ old('description') }}
-                                                                </textarea>
+                                   {{ old('description') }}
+                                    </textarea>
                             @error('description')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
                         </div>
-                        <button type="submit" class="btn btn-secondary mr-2">Dodaj</button>
-                        <button class="btn btn-light">Anuluj</button>
+                        <button type="submit" class="btn btn-dark mr-2">Dodaj</button>
 
                     </form>
                 </div>
