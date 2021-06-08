@@ -47,7 +47,7 @@
                                 <td>{{ $patient->address }}</td>
                                 <td>{{ $patient->phone_number }}</td>
                                 <td>
-                                    <a href="{{ route('patient.show', $patient->id) }}" class="btn btn-dark">KARTA
+                                    <a href="{{ route('doctor.patient', $patient->id) }}" class="btn btn-dark">KARTA
                                         PACJENTA</a>
                                 </td>
                             </tr>

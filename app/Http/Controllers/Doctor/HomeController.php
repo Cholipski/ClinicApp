@@ -33,6 +33,7 @@ class HomeController extends Controller
 
 			->leftJoin('users', 'users.id', '=', 'bookings.user_id')
 			->select(
+                'users.id',
 				'users.first_name as name',
 				'users.last_name as last_name',
 				'bookings.date',
