@@ -45,7 +45,7 @@
             <div class="col-lg-6">
                 <div class="card" style="min-height: 300px">
                     <div class="card-header justify-content-center">
-                        <h3>Podstawowe informacje o pacjencie</h3>
+                        <h3>Wizyty</h3>
                     </div>
                     <div class="card-body">
 
@@ -76,20 +76,20 @@
             <div class="col-lg-6">
                 <div class="card" style="min-height: 300px">
                     <div class="card-header justify-content-center">
-                        <h3>Podstawowe informacje o pacjencie</h3>
+                        <h3>Recepty</h3>
                     </div>
                     <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table table-hover" style="margin-top: 2.5rem">
-                                <thead class="thead-dark">
-                                    <tr>
-                                        <th>Data</th>
-                                        <th>Kod</th>
-                                        <th>Recepta</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @if ($prescriptions->count() > 0)
+                        @if ($prescriptions->count() > 0)
+                            <div class="table-responsive">
+                                <table class="table table-hover" style="margin-top: 2.5rem">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th>Data</th>
+                                            <th>Kod</th>
+                                            <th>Recepta</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
                                         @foreach ($prescriptions as $prescription)
                                             <tr>
                                                 <th style="font-weight: normal">
@@ -106,12 +106,18 @@
                                                 </th>
                                             </tr>
                                         @endforeach
-                                    @else
-                                        <p>Brak wystawionych recept</p>
-                                    @endif
-                                </tbody>
-                            </table>
-                        </div>
+                                    </tbody>
+                                </table>
+                            </div>
+                        @else
+                            <div class="d-flex align-items-center justify-content-center">
+                                <p style="margin-top: 3rem; font-weight: bold; font-size: 1.5rem">
+                                    Brak
+                                    wystawionych recept
+                                </p>
+                            </div>
+
+                        @endif
                     </div>
                 </div>
             </div>
