@@ -111,7 +111,7 @@
                             </div>
                         @else
                             <div class="d-flex align-items-center justify-content-center">
-                                <p style="margin-top: 3rem; font-weight: bold; font-size: 1.5rem">
+                                <p style="margin-top: 3rem; font-weight: 400; font-size: 1.5rem">
                                     Brak
                                     wystawionych recept
                                 </p>
